@@ -1,0 +1,15 @@
+.navbar {
+    background-color: #173E43;
+}
+
+.footer {
+    background-color: #173E43;
+    position: absolute;
+    height: 20vh;
+    width: 100vw;
+    bottom: 0px;
+}
+.search {
+    width: 40vw;
+}
+
