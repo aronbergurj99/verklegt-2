@@ -9,9 +9,7 @@
     <div class="column-labels">
     <label class="image"> Image </label>
     <label class="product-info"> Info </label>
-    <label class="plus-btn"> plus </label>
-    <label class="input-info"> num-quant</label>
-    <label class="minus-btn"> minus </label>
+    <label class="quant-info"> quant-num </label>
     </div>
 
     <div class="cart-item">
@@ -27,21 +25,34 @@
             <span class="product-name">Lucky charms</span>
             <span class="product-price">Price: 549 ISK</span>
         </div>
+        <div class="quant-info">
+            <button class="plus-btn" type="button" name="button">
+                <img src="https://img.icons8.com/metro/26/000000/chevron-up.png" alt=""/>
+            </button>
 
-        <button class="plus-btn" type="button" name="button">
-            <img src="https://img.icons8.com/metro/26/000000/chevron-up.png" alt=""/>
-        </button>
 
-        <div class="input-info">
-        <input name="name" type="text" value="1">
+            <input name="input-info" type="quantity" value="1">
+
+
+            <button class="minus-btn" type="button" name="button">
+                <img src="https://img.icons8.com/metro/26/000000/chevron-down.png" alt=""/>
+            </button>
         </div>
-
-        <button class="minus-btn" type="button" name="button">
-            <img src="https://img.icons8.com/metro/26/000000/chevron-down.png" alt=""/>
-        </button>
-
 
     </div>
 </main>
 
     {% endblock %}
+
+
+<!--
+Þetta er líka hugmynd til að hafa  plus minus takka með input
+
+
+        <div class="number">
+            <span class="minus">-</span>
+            <input type="text" value="1"/>
+            <span class="plus">+</span>
+        </div>
+
+-->
