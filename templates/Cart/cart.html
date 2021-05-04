@@ -2,7 +2,30 @@
     {% extends "base.html" %}
     {% block content %}
 
-        <h1>My cart</h1>
-        <p>The cart template is using the base template, very nice!</p>
+    <h1>My cart</h1>
+    <p>The cart template is using the base template, very nice!</p>
+<div class="item">
+        <div class="image">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/91%2BxMrv0uOL._AC_SL1500_.jpg" alt=""
+      width="100"
+     height="150"/>
+    </div>
 
+
+         <div class="product-name">
+      <span>Common Projects</span>
+      <span>Bball High</span>
+      <span>White</span>
+    </div>
+
+        <div class="quantity">
+      <button class="plus-btn" type="button" name="button">
+          <img src="https://img.icons8.com/metro/26/000000/circled-up-2.png" alt=""/>
+      </button>
+      <input type="text" name="name" value="1">
+      <button class="minus-btn" type="button" name="button">
+        <img src="https://img.icons8.com/metro/26/000000/circled-down-2--v1.png" alt=""/>
+      </button>
+    </div>
+</div>
     {% endblock %}
