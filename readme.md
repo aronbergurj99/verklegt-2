@@ -11,3 +11,6 @@ To use the database you will need to be in your venv and "pip install psycopg2-b
 * Host: 34.105.153.20
 * Port: 5432
 
+# Images
+To be able to store images, we need to install Pillow to our venv
+* pip install Pillow
