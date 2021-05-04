@@ -38,21 +38,51 @@
     float: left; width: 20%;
 }
 
+.quant-info{
+    float: right; width: 20%;
+}
 
+.small-image{
+    width:  200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.small-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  width: 300px;
+  height: 350px;
+  background: white;
+  border-style: solid;
+  color: black;
+  transition: all .4s ease;
+}
+.small-product:hover {
+  border-radius: 5%;
+  box-shadow: 0px 0px 100px 30px yellow,
+             0 0px 70px 50px blue,
+             0 0px 45px 80px red;
+}
+.small-product h1 {
+    font-size: 1.5rem;
+
+}
+
+.small-product p {
+    font-size: 1rem;
+}
+
+.small-product-text {
+    width: 100%;
+    margin-left: 1rem;
+    float: left;
+}
 .contents {
     display: flex;
     overflow: scroll;
     height: 78vh;
 }
-img {
-    float: left;
-    width:  250px;
-    height: 250px;
-    object-fit: cover;
-}
-
-
-.quant-info{
-    float: right; width: 20%;
-}
-

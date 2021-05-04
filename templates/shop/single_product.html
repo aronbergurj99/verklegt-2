@@ -1,8 +1,15 @@
-<div>
+<div class="small-product">
     <a href="">
-        <img src="{{ product.productimage_set.first.image.url}}"/>
+        <img class="small-image" src="{{ product.productimage_set.first.image.url}}"/>
     </a>
+    <div class="small-product-text">
+        <h1>{{ product.name }}</h1>
+        <p><b>Price: {{ product.price }}</b></p>
+    </div>
 
-    <h1>{{ product.name }}</h1>
-    <p>rating: {{ product.rating_set.first.rating }}</p>
+    {% if product.rating_set.first.rating %}
+        <p>rating: {{ product.rating_set.first.rating}} ({{ product.rating_set.first.number_of_ratings }} ratings)</p>
+    {% else %}
+        <p>rating: no ratings yet</p>
+    {% endif%}
 </div>
