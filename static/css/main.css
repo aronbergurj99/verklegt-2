@@ -12,7 +12,32 @@
 }
 .search {
     width: 40vw;
+
 }
+
+
+.cart-item {
+    display: inline-block;
+    border-bottom: solid 2px black;
+}
+
+
+.column-labels {
+    display: none;
+  }
+
+.product-info{
+    display: inline;
+    float: left; width: 37%;
+    margin-left: 20 px;
+    margin-right: 20px;
+}
+
+
+.image{
+    float: left; width: 20%;
+}
+
 
 .contents {
     display: flex;
@@ -24,5 +49,10 @@ img {
     width:  250px;
     height: 250px;
     object-fit: cover;
+}
+
+
+.quant-info{
+    float: right; width: 20%;
 }
 
