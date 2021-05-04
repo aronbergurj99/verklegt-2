@@ -11,5 +11,40 @@
 }
 .search {
     width: 40vw;
+
 }
 
+
+.cart-item {
+    display: inline-block;
+    border-bottom: solid 2px black;
+}
+
+
+.column-labels {
+    display: none;
+  }
+
+.product-info{
+    display: inline;
+    float: left; width: 37%;
+    margin-left: 20 px;
+    margin-right: 20px;
+}
+
+
+.image{
+    float: left; width: 20%;
+}
+
+.plus-btn{
+    float: left; width: 20%;
+}
+
+.minus-btn{
+    float: left; width: 20%;
+}
+
+.input-info{
+    float: left; width: 20%;
+}

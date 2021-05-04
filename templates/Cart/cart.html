@@ -4,28 +4,44 @@
 
     <h1>My cart</h1>
     <p>The cart template is using the base template, very nice!</p>
-<div class="item">
+<main class="cart-main">
+
+    <div class="column-labels">
+    <label class="image"> Image </label>
+    <label class="product-info"> Info </label>
+    <label class="plus-btn"> plus </label>
+    <label class="input-info"> num-quant</label>
+    <label class="minus-btn"> minus </label>
+    </div>
+
+    <div class="cart-item">
+
+
         <div class="image">
-      <img src="https://images-na.ssl-images-amazon.com/images/I/91%2BxMrv0uOL._AC_SL1500_.jpg" alt=""
-      width="100"
-     height="150"/>
-    </div>
+            <img src="https://images-na.ssl-images-amazon.com/images/I/91%2BxMrv0uOL._AC_SL1500_.jpg" alt=""
+                width="100"
+                height="150"/>
+        </div>
+
+        <div class="product-info">
+            <span class="product-name">Lucky charms</span>
+            <span class="product-price">Price: 549 ISK</span>
+        </div>
+
+        <button class="plus-btn" type="button" name="button">
+            <img src="https://img.icons8.com/metro/26/000000/chevron-up.png" alt=""/>
+        </button>
+
+        <div class="input-info">
+        <input name="name" type="text" value="1">
+        </div>
+
+        <button class="minus-btn" type="button" name="button">
+            <img src="https://img.icons8.com/metro/26/000000/chevron-down.png" alt=""/>
+        </button>
 
 
-         <div class="product-name">
-      <span>Common Projects</span>
-      <span>Bball High</span>
-      <span>White</span>
     </div>
+</main>
 
-        <div class="quantity">
-      <button class="plus-btn" type="button" name="button">
-          <img src="https://img.icons8.com/metro/26/000000/circled-up-2.png" alt=""/>
-      </button>
-      <input type="text" name="name" value="1">
-      <button class="minus-btn" type="button" name="button">
-        <img src="https://img.icons8.com/metro/26/000000/circled-down-2--v1.png" alt=""/>
-      </button>
-    </div>
-</div>
     {% endblock %}
