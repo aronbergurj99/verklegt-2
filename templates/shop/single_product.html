@@ -1,0 +1,8 @@
+<div>
+    <a href="">
+        <img src="{{ product.productimage_set.first.image.url}}"/>
+    </a>
+
+    <h1>{{ product.name }}</h1>
+    <p>rating: {{ product.rating_set.first.rating }}</p>
+</div>

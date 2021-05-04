@@ -1,7 +1,8 @@
 
 {% extends 'base.html' %}
 {% block content %}
-    <!--
-    here goes the got the contents for index.html that will be loaded into base.html
-    -->
+    {% for product in products %}
+
+        {% include 'shop/single_product.html' with product=product ratings=ratings %}
+    {% endfor %}
 {% endblock %}

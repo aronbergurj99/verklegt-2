@@ -1,15 +1,28 @@
 .navbar {
     background-color: #173E43;
+    width: 100vw;
+    height: 8vh;
 }
 
 .footer {
-    background-color: #173E43;
+    background-color: #173E42;
     position: absolute;
-    height: 20vh;
-    width: 100vw;
+    height: 15vh;
     bottom: 0px;
 }
 .search {
     width: 40vw;
+}
+
+.contents {
+    display: flex;
+    overflow: scroll;
+    height: 78vh;
+}
+img {
+    float: left;
+    width:  250px;
+    height: 250px;
+    object-fit: cover;
 }
 
