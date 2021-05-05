@@ -16,6 +16,7 @@
 }
 
 
+
 .cart-item {
     display: inline-block;
     border-bottom: solid 2px black;
@@ -39,10 +40,12 @@
 }
 
 .quant-info{
+    display: flex;
+    flex-direction: row;
     float: right; width: 20%;
 }
 
-.small-image{
+.small-image {
     width:  200px;
     height: 200px;
     object-fit: cover;
@@ -82,7 +85,18 @@
     float: left;
 }
 .contents {
+    padding-top: 20px;
     display: flex;
     overflow: scroll;
     height: 78vh;
+}
+
+/*
+this is all the detailed product stuff
+ */
+
+.big-image {
+    height: 450px;
+    width: 450px;
+    object-fit: cover;
 }
