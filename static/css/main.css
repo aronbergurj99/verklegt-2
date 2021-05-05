@@ -17,27 +17,7 @@
 
 /*Shopping cart css*/
 
-.cart-main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-    background-color: #3fb0ac;
-}
 
-
-.cart-item1 {
-    display: inline-block;
-    border-bottom: solid 2px lightgray;
-}
-
-
-.cart-item2 {
-    display: inline-block;
-    border-bottom: solid 2px lightgray;
-}
 
 
 .column-labels {
@@ -103,7 +83,7 @@ input::-webkit-inner-spin-button {
 
 }
 
-.small-image{
+.small-image {
     width:  200px;
     height: 200px;
     object-fit: cover;
@@ -143,7 +123,18 @@ input::-webkit-inner-spin-button {
     float: left;
 }
 .contents {
+    padding-top: 20px;
     display: flex;
     overflow: scroll;
     height: 78vh;
+}
+
+/*
+this is all the detailed product stuff
+ */
+
+.big-image {
+    height: 450px;
+    width: 450px;
+    object-fit: cover;
 }
