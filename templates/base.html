@@ -11,15 +11,17 @@
 
     <!-- css file-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/account.css' %}">
 </head>
 <body>
     {% include 'navbar.html' %}
     {%block content %}
         <!--
-        this is were stuff gets added in.
+        this is where stuff gets added in.
         -->
     {% endblock %}
     {% include 'footer.html' %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>
 </html>
