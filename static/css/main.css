@@ -96,6 +96,11 @@ input::-webkit-inner-spin-button {
     flex-direction: row;
     float: right; width: 20%;
 
+    /*text-align: left;*/
+    /*position: relative;*/
+    /*white-space: nowrap;*/
+    /*vertical-align: top;*/
+
 }
 
 .small-image{
