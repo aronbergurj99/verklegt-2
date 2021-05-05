@@ -29,9 +29,9 @@
 
 
 
-.cart-item {
+.cart-item1 {
     display: inline-block;
-    border-bottom: solid 2px black;
+    border-bottom: solid 2px lightgray;
 }
 
 
@@ -43,7 +43,7 @@
 
 .column-labels {
     display: none;
-  }
+}
 
 .product-info{
     display: inline;
