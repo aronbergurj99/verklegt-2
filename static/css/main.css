@@ -16,9 +16,28 @@
 }
 
 
+.cart-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+
+
+}
+
+
+
 .cart-item {
     display: inline-block;
     border-bottom: solid 2px black;
+}
+
+
+.cart-item2 {
+    display: inline-block;
+    border-bottom: solid 2px lightgray;
 }
 
 
@@ -39,7 +58,10 @@
 }
 
 .quant-info{
+    display: flex;
+    flex-direction: row;
     float: right; width: 20%;
+
 }
 
 .small-image{
