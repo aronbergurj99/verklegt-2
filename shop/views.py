@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Rating, ProductImage
+from django.http import HttpResponse, JsonResponse
 
 
 # Create your views here.
@@ -16,3 +17,8 @@ def get_product_by_id(request, id):
         "product": get_object_or_404(Product, pk=id)
     })
 
+
+def search(request):
+    products = Product.objects.all().values('id','name', 'price')
+    images = ProductImage.objects.all().values('image', 'product')
+    return JsonResponse({'products': list(products),'images': list(images)}, safe=False)
