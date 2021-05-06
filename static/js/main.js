@@ -60,3 +60,20 @@ function search() {
 
   }
 }
+
+function increaseQuantity(id, increase) {
+  let quantity = document.getElementById(id + "-input");
+  let qValue = quantity.value;
+  let value = Number(qValue);
+
+  if (increase) {
+    value += 1;
+  } else {
+    value -=1;
+    if (value < 0) {
+      value = 0;
+    }
+  }
+  quantity.value = value.toString()
+
+}
