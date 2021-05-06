@@ -28,10 +28,10 @@ function createSearchResult(product, image) {
   var container = document.createElement("div");
   container.className = "single-search-result";
 
-  var name = document.createElement("h3");
+  var name = document.createElement("b");
   name.innerHTML = product.name;
 
-  var productPrice = document.createElement("h3");
+  var productPrice = document.createElement("b");
   productPrice.innerHTML = "Price: " + product.price;
 
   var productImage = document.createElement("img");

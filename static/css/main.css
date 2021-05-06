@@ -13,6 +13,7 @@
     bottom: 0px;
 }
 .search {
+    height: 90%;
     width: 50vw;
 }
 .dropdown {
@@ -21,18 +22,19 @@
 }
 
 .dropdown-content {
-
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: white;
     width: 50vw;
     min-height: 0px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
     z-index: 1;
+    border-radius: 1rem;
+    transition: all .8s ease;
 }
 .dropdown:hover .dropdown-content {
-  display: block;
+    display: block;
 }
 
 /*Shopping cart css*/
@@ -146,6 +148,7 @@ input::-webkit-inner-spin-button {
 }
 .small-product:hover {
   border-radius: 5%;
+  z-index: 10;
   box-shadow: 0px 0px 100px 30px yellow,
              0 0px 70px 50px blue,
              0 0px 45px 80px red;
@@ -190,8 +193,8 @@ a {
 this is for the search results
  */
 .x-small-images {
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     object-fit: cover;
 }
 .single-search-result {
@@ -199,8 +202,9 @@ this is for the search results
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
     padding: 5px;
+
 }
 .dropdown-content a{
     color: black;
