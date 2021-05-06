@@ -22,7 +22,8 @@ from ship_o_cereal import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shop.urls')),
-    path('cart', include('cart.urls')),
+    path('cart/', include('cart.urls')),
     path('accounts', include('account.urls'))
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
