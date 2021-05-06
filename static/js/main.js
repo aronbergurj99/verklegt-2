@@ -28,10 +28,10 @@ function createSearchResult(product, image) {
   var container = document.createElement("div");
   container.className = "single-search-result";
 
-  var name = document.createElement("h3");
+  var name = document.createElement("b");
   name.innerHTML = product.name;
 
-  var productPrice = document.createElement("h3");
+  var productPrice = document.createElement("b");
   productPrice.innerHTML = "Price: " + product.price;
 
   var productImage = document.createElement("img");
@@ -59,4 +59,21 @@ function search() {
     }
 
   }
+}
+
+function increaseQuantity(id, increase) {
+  let quantity = document.getElementById(id + "-input");
+  let qValue = quantity.value;
+  let value = Number(qValue);
+
+  if (increase) {
+    value += 1;
+  } else {
+    value -=1;
+    if (value < 0) {
+      value = 0;
+    }
+  }
+  quantity.value = value.toString()
+
 }
