@@ -51,7 +51,7 @@
   align-items: center;
   margin: 20px;
   width: 300px;
-  height: 350px;
+  height: 400px;
   background: white;
   border-style: solid;
   color: black;
@@ -119,4 +119,8 @@ this is for the search results
 }
 .dropdown-content a{
     color: black;
+}
+
+.add-to-cart-btn {
+    padding: 10px
 }

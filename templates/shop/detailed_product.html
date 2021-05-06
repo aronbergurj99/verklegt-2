@@ -14,6 +14,8 @@
         <h2>Description:</h2>
         <p>{{ product.description }}</p>
         <b>Price: {{ product.price }}</b>
+        {% include 'cart/add-to-cart.html' %}
+
     </div>
     <!--
     TODO: css, add to cart
