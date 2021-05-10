@@ -14,6 +14,7 @@ function getProducts() {
       var data = JSON.parse(this.response)
       products = data['products']
       images = data['images']
+      search()
     }
   };
   xhttp.open("GET", '/search', true);
@@ -62,5 +63,5 @@ function search() {
   }
 }
 
-getProducts()
+
 
