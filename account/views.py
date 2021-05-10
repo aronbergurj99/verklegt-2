@@ -40,13 +40,14 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('login')
+    else:
+        form = SignUpForm()
 
     return render(request, 'account/register.html', {
-        'form': SignUpForm()
+        'form': form
     })
 
 
 class UserLoginView(LoginView):
-    def __init__(self, *args, **kwargs):
-        super(LoginView, self).__init__(*args, **kwargs)
+
     LoginView.form_class = LoginForm

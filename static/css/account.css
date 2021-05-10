@@ -95,18 +95,27 @@
 /*
 register forms
 */
+.form {
+}
 
 .sign-up {
-    width: 100%;
     display: flex;
+    width: 100%;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
     align-content: center;
     justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
+
+.sign-up input {
+
+}
+
 .sign-up form > input {
-    float: right;
+    float: left;
 }
 
 .sign-forms {
