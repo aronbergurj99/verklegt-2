@@ -27,10 +27,10 @@ function createSearchResult(product) {
   var container = document.createElement("div");
   container.className = "single-search-result";
 
-  var name = document.createElement("b");
+  var name = document.createElement("p");
   name.innerHTML = product.name;
 
-  var productPrice = document.createElement("b");
+  var productPrice = document.createElement("p");
   productPrice.innerHTML = "Price: " + product.price;
 
   var productImage = document.createElement("img");
@@ -45,6 +45,9 @@ function createSearchResult(product) {
 }
 
 function search() {
+  if (!products) {
+    getProducts()
+  }
   searchResults.innerHTML = ""
   filteredArr = products.filter(info => info['name'].toLowerCase().includes(searchInput.value.toLowerCase()));
 
