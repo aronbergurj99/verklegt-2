@@ -4,9 +4,9 @@ from django import forms
 
 
 class SignUpForm(UserCreationForm):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         # simple trick to put class on each field!
-        super(SignUpForm, self).__init__()
+        super(SignUpForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             clean_name = ''.join(char for char in field_name if char.isalpha() or char == '_').replace('_', ' ')
             print(clean_name)

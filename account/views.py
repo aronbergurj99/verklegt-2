@@ -31,6 +31,7 @@ orders = [
 def profile(request):
     return render(request, 'account/account.html', context={'account': account, 'search_history': search_history, 'orders': orders})
 
+
 def register(request):
     if request.method == 'POST':
         form = SignUpForm(data=request.POST)
@@ -41,6 +42,7 @@ def register(request):
     return render(request, 'account/register.html', {
         'form': SignUpForm()
     })
+
 
 def login(request):
     return render(request, 'account/login.html', {
