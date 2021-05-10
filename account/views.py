@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from account.forms import SignUpForm
+# from account.models import RegisteredUser
 
 account = {
     'name': 'Jón Jónsson',
@@ -25,5 +28,21 @@ orders = [
 ]
 
 # Create your views here.
-def index(request):
+def profile(request):
     return render(request, 'account/account.html', context={'account': account, 'search_history': search_history, 'orders': orders})
+
+def register(request):
+    if request.method == 'POST':
+        form = SignUpForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+
+    return render(request, 'account/register.html', {
+        'form': SignUpForm()
+    })
+
+def login(request):
+    return render(request, 'account/login.html', {
+        'form': LoginForm()
+    })
