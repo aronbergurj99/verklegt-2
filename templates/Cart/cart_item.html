@@ -4,9 +4,9 @@
     <p>{{ product.price }}</p>
 
     <div class="quantity-container">
-        <button onclick="increaseQuantity({{ product.id }}, true)">+</button>
-        <input id="{{ product.id }}-input" value="0">
         <button onclick="increaseQuantity({{ product.id }}, false)">-</button>
+        <input id="{{ product.id }}-input" value="0">
+        <button onclick="increaseQuantity({{ product.id }}, true)">+</button>
 
     </div>
 </div>

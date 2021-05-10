@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid lightgray;
     padding: 50px;
     align-items: center;
 }
@@ -33,6 +33,12 @@
 .quantity-container input {
     width: 2rem;
     height: 2rem;
+    border: none;
+    text-align: center ;
+
+}
+.quantity-container button {
+    background-color: transparent;
 }
 
 .cart-checkout {
@@ -46,5 +52,24 @@
 
 .cart-info {
     height: 10%;
-    padding: 10px;
+    padding: 0;
+    margin: 0;
+    background-color: lightgray;
+    border-bottom: none;
+
+}
+p {
+    margin: 0;
+}
+
+p#cartheader {
+    font-weight: bold;
+    /* text-align: left;*/
+}
+
+.btn btn-lg btn-primary {
+    border: none;
+    background-color: lightgray;
+
+
 }
