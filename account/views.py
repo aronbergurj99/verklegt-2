@@ -1,7 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from account.forms import SignUpForm
-from django import forms
 # from account.models import RegisteredUser
 
 account = {
