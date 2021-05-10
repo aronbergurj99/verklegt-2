@@ -5,20 +5,26 @@ from django.http import HttpResponse, JsonResponse
 
 # Create your views here.
 def index(request):
+    # Grabs all products from the db, and returns the main template, and products.
     return render(request, 'shop/index.html', {
-        "products": Product.objects.all().order_by('name'),
-        "ratings": Rating.objects.all(),
-        "images": ProductImage.objects.all().order_by('name')
+        "products": Product.objects.all().order_by('name')
     })
 
 
 def get_product_by_id(request, id):
+    # Gets a single product from database from id, return 404 or the product.
     return render(request, 'shop/detailed_product.html', {
         "product": get_object_or_404(Product, pk=id)
     })
 
 
 def search(request):
-    products = Product.objects.all().values('id','name', 'price')
-    images = ProductImage.objects.all().values('image', 'product')
-    return JsonResponse({'products': list(products),'images': list(images)}, safe=False)
+    # Gets all the products from the database, returns them as json for live search.
+    products = [{
+        'id': x.id,
+        'name': x.name,
+        'price': x.price,
+        'image': x.productimage_set.first().image.url,
+    } for x in Product.objects.all()]
+
+    return JsonResponse({'data': products}, safe=False)
