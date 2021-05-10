@@ -3,10 +3,17 @@
     <p>{{ product.name }}</p>
     <p>{{ product.price }}</p>
 
-    <div class="quantity-container">
-        <button onclick="increaseQuantity({{ product.id }}, false)">-</button>
-        <input id="{{ product.id }}-input" value="0">
-        <button onclick="increaseQuantity({{ product.id }}, true)">+</button>
+    <form action="{% url 'add-to-cart' product.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">+</button>
+        <input type="hidden" name="next" value="{{ request.path }}">
+    </form>
 
-    </div>
+    <input value="{{ quantity }}">
+
+    <form action="{% url 'remove-from-cart' product.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">-</button>
+        <input type="hidden" name="next" value="{{ request.path }}">
+    </form>
 </div>

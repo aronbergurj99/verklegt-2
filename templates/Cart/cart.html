@@ -11,13 +11,13 @@
 
         </div>
         <div class="cart-items">
-            {% for product in products %}
-                {% include 'cart/cart_item.html' with product=product %}
+            {% for product, quantity in products %}
+                {% include 'cart/cart_item.html' with product=product quantity=quantity%}
 
             {% endfor %}
         </div>
         <div class="cart-checkout">
-            <p>Checkout total: </p>
+            <p>Checkout total: {{ total_price }}</p>
             <button class="btn btn-lg btn-primary">Browse more</button>
             <button class="btn btn-lg btn-primary">Checkout</button>
 
