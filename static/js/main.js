@@ -5,6 +5,7 @@ var searchResults = document.getElementById("search-result");
 var searchInput = document.getElementById("search");
 let filteredArr = []
 //function to retrieve all products when searching
+
 function getProducts() {
 
   var xhttp = new XMLHttpRequest();
@@ -15,10 +16,10 @@ function getProducts() {
       images = data['images']
     }
   };
-  xhttp.open("GET", "search", true);
+  xhttp.open("GET", '/search', true);
   xhttp.send();
 }
-getProducts()
+
 
 
 function createSearchResult(product, image) {
@@ -35,7 +36,7 @@ function createSearchResult(product, image) {
   productPrice.innerHTML = "Price: " + product.price;
 
   var productImage = document.createElement("img");
-  productImage.setAttribute("src", "media/" + image.image.toString())
+  productImage.setAttribute("src", "/media/" + image.image.toString())
   productImage.className = "x-small-images"
   container.appendChild(name);
   container.appendChild(productPrice);
@@ -61,19 +62,5 @@ function search() {
   }
 }
 
-function increaseQuantity(id, increase) {
-  let quantity = document.getElementById(id + "-input");
-  let qValue = quantity.value;
-  let value = Number(qValue);
+getProducts()
 
-  if (increase) {
-    value += 1;
-  } else {
-    value -=1;
-    if (value < 0) {
-      value = 0;
-    }
-  }
-  quantity.value = value.toString()
-
-}
