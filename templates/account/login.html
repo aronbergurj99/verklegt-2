@@ -2,7 +2,15 @@
 {% block content %}
     <form method="POST" class="form form-horizontal">
         {% csrf_token %}
-        {{ form }}
+        <div>
+            <span>Username:</span>
+            {{ form.username }}
+        </div>
+        <div>
+            <span>Password:</span>
+            {{ form.password }}
+        </div>
+
         <input type="submit" class="btn btn-primary" value="Login" />
     </form>
 {% endblock%}
