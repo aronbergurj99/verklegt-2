@@ -156,6 +156,11 @@ this is for the search results
 
 .single-search-result:hover {
 /*TODO make something happen when hover over search link*/
+      border-radius: 5px;
+  z-index: 10;
+  box-shadow: inset 0px 0px 2px 2px yellow,
+             inset 0px 0px 3px 3px blue,
+            0 0px 2px 2px red;
 }
 
 .dropdown-content {
