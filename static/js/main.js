@@ -22,7 +22,7 @@ function getProducts() {
 
 function createSearchResult(product) {
   var href = document.createElement("a");
-  href.href = product.id
+  href.href = '/products/' + product.id
 
   var container = document.createElement("div");
   container.className = "single-search-result";
