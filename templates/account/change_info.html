@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content  %}
+    <div class="sign-up">
+    <h1>Change information here</h1>
+    <form class="form form-horizontal" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            {% include 'account/single_input.html' with field=field %}
+        {% endfor %}
+        <input type="submit" class="btn btn-primary" value="Sign up" />
+    </form></div>
+
+{% endblock %}

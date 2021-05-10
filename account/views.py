@@ -29,7 +29,7 @@ orders = [
 
 # Create your views here.
 def profile(request):
-    return render(request, 'account/account.html', context={'account': account, 'search_history': search_history, 'orders': orders})
+    return render(request, 'account/account.html', context={'account': request.user, 'search_history': search_history, 'orders': orders})
 
 
 def register(request):
@@ -41,10 +41,4 @@ def register(request):
 
     return render(request, 'account/register.html', {
         'form': SignUpForm()
-    })
-
-
-def login(request):
-    return render(request, 'account/login.html', {
-        'form': LoginForm()
     })
