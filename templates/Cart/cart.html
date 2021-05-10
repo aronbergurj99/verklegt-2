@@ -4,22 +4,22 @@
 {% block content %}
     <div class="cart-container">
         <div class="cart-item cart-info">
-            <p>Image</p>
+            <p id="cartheader">Shopping cart</p>
             <p>Name</p>
-            <p>price</p>
-            <p>quantity</p>
+            <p>Price</p>
+            <p>Quantity</p>
 
         </div>
         <div class="cart-items">
-            {% for product, quantity in products %}
-                {% include 'cart/cart_item.html' with product=product quantity=quantity %}
+            {% for product in products %}
+                {% include 'cart/cart_item.html' with product=product %}
 
             {% endfor %}
         </div>
         <div class="cart-checkout">
-            <p>total: {{ total_price }}</p>
-            <button class="btn btn-lg btn-primary">browse more</button>
-            <button class="btn btn-lg btn-primary">buy now</button>
+            <p>Checkout total: </p>
+            <button class="btn btn-lg btn-primary">Browse more</button>
+            <button class="btn btn-lg btn-primary">Checkout</button>
 
         </div>
     </div>
