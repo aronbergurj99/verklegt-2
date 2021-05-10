@@ -3,6 +3,9 @@ from django.db import models
 
 # Create your models here.
 
+class ProfilePicture(models.Model)
+    profile_image = models.ImageField(upload_to='', blank=True, null=True)
+
 class Country(models.Model):
     country = models.CharField(max_length=80)
 
@@ -13,8 +16,4 @@ class Address(models.Model):
     house_number = models.CharField(max_length=80)
     postal_code = models.CharField(max_length=80)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-class RegisteredUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE())
-    profile_image = models.ImageField(upload_to='products', blank=True, null=True)
 

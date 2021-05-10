@@ -15,10 +15,10 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                        {{ account.name}}
+                                        {{ account.first_name}} {{ account.last_name }}
                                     </h5>
                                     <h6>
-                                        Það sem við viljum
+                                        {{ account}}
                                     </h6>
                                     <p class="proile-rating">boom <span>boom</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -34,16 +34,22 @@
                             </ul>
                             <div class="tab-content" id="myTabContent">
                               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                  {% for key, value in account.items %}
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>{{ key }}</label>
+                                            <label>Name</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>{{ value }}</p>
+                                            <p>{{ account.first_name }} {{ account.last_name }}</p>
                                         </div>
                                     </div>
-                                {%  endfor %}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{ account.email }}</p>
+                                        </div>
+                                    </div>
                               </div>
                               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                   {% for search in search_history %}

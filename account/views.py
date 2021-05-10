@@ -1,16 +1,15 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from account.forms import SignUpForm
-# from account.models import RegisteredUser
 
-account = {
-    'name': 'Jón Jónsson',
-    'email': 'jon@gmail.com',
-    'country': 'Iceland',
-    'town': 'Akranes',
-    'zip': '300',
-    'Street': 'Melteigur 7'
-}
+# account = {
+#     'name': 'Jón Jónsson',
+#     'email': 'jon@gmail.com',
+#     'country': 'Iceland',
+#     'town': 'Akranes',
+#     'zip': '300',
+#     'Street': 'Melteigur 7'
+# }
 
 
 search_history = [
@@ -29,7 +28,9 @@ orders = [
 
 # Create your views here.
 def profile(request):
-    return render(request, 'account/account.html', context={'account': account, 'search_history': search_history, 'orders': orders})
+    account = request.user
+    print(account)
+    return render(request, 'account/account.html', context={'account': request.user, 'search_history': search_history, 'orders': orders})
 
 def register(request):
     if request.method == 'POST':
@@ -37,7 +38,6 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('login')
-
     return render(request, 'account/register.html', {
         'form': SignUpForm()
     })
