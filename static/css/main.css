@@ -1,11 +1,23 @@
+
 body {
     font-family: Montserrat;
+
+    height: 100vh;
+
 }
+
+.main-body {
+    overflow-y: scroll;
+    height: 90%;
+}
+
 .navbar {
+
+    top: 0px;
     background-color: #173E43;
     /* background-color: lightslategrey; */
     width: 100vw;
-    height: 10vh;
+    height: 10%;
 }
 
 
@@ -13,9 +25,7 @@ body {
 .footer {
     background-color: #173E42;
     /* background-color: lightslategrey; */
-    position: absolute;
     height: 15vh;
-    bottom: 0px;
 }
 .search {
     height: 90%;
@@ -93,8 +103,9 @@ body {
 .contents {
     /* padding-top: 20px; */
     display: flex;
-    overflow: scroll;
-    height: 78vh;
+    min-height: 90vh;
+    overflow-y: auto;
+
 }
 
 /*

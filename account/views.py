@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from account.forms import SignUpForm
+from account.forms import SignUpForm, LoginForm
 # from account.models import RegisteredUser
 
 account = {
@@ -27,6 +28,7 @@ orders = [
     'Order #5'
 ]
 
+
 # Create your views here.
 def profile(request):
     return render(request, 'account/account.html', context={'account': account, 'search_history': search_history, 'orders': orders})
@@ -44,7 +46,7 @@ def register(request):
     })
 
 
-def login(request):
-    return render(request, 'account/login.html', {
-        'form': LoginForm()
-    })
+class UserLoginView(LoginView):
+    def __init__(self, *args, **kwargs):
+        super(LoginView, self).__init__(*args, **kwargs)
+    LoginView.form_class = LoginForm

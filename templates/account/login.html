@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="sign-up">
+    <h1>Plz login you kind sir!!</h1>
     <form method="POST" class="form form-horizontal">
         {% csrf_token %}
-        <div>
-            <span>Username:</span>
-            {{ form.username }}
-        </div>
-        <div>
-            <span>Password:</span>
-            {{ form.password }}
-        </div>
-
+        {% for field in form %}
+            {% include 'account/single_input.html' with field=field%}
+        {% endfor %}
         <input type="submit" class="btn btn-primary" value="Login" />
     </form>
+    </div>
+
 {% endblock%}

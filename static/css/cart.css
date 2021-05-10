@@ -2,9 +2,6 @@
     width: 100vw;
 }
 
-.html {
-    overflow-x: hidden;
-}
 .cart-items {
     display: flex;
     flex-direction: column;
