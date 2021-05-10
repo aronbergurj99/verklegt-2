@@ -91,3 +91,19 @@
     font-weight: 600;
     color: #0062cc;
 }
+
+/*
+register forms
+*/
+
+.sign-up {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.sign-up form > input {
+    float: right;
+}
