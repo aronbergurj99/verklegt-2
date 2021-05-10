@@ -8,9 +8,9 @@
     </div>
 
     {% if product.rating_set.first.rating %}
-        <p>rating: {{ product.rating_set.first.rating}} ({{ product.rating_set.first.number_of_ratings }} ratings)</p>
+        <p>Rating: {{ product.rating_set.first.rating}} ({{ product.rating_set.first.number_of_ratings }} ratings)</p>
     {% else %}
-        <p>rating: no ratings yet</p>
+        <p>Rating: no ratings yet</p>
     {% endif%}
     {% include 'cart/add-to-cart.html' %}
 
