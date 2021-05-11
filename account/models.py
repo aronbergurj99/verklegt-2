@@ -3,8 +3,9 @@ from django.db import models
 
 # Create your models here.
 
-class ProfilePicture(models.Model)
-    profile_image = models.ImageField(upload_to='', blank=True, null=True)
+class ProfilePicture(models.Model):
+    profile_image = models.ImageField(upload_to='profile_pictures', blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Country(models.Model):
     country = models.CharField(max_length=80)

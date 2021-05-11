@@ -1,6 +1,7 @@
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from account.forms import SignUpForm, ChangeInfoForm, LoginForm
+from account.models import ProfilePicture
 
 account = {
     'name': 'Jón Jónsson',
@@ -29,7 +30,14 @@ orders = [
 
 # Create your views here.
 def profile(request):
-    return render(request, 'account/account.html', context={'account': request.user, 'search_history': search_history, 'orders': orders})
+    profile_picture = ProfilePicture.objects.get(user=request.user).profile_image
+    return render(request, 'account/account.html', context={
+        'account': request.user,
+        'search_history': search_history,
+        'orders': orders,
+        'profile_picture': profile_picture,
+        'image_root': '/media/'
+    })
 
 
 def register(request):
@@ -48,7 +56,6 @@ def register(request):
 def change_info(request):
     if request.method == 'POST':
         form = ChangeInfoForm(data=request.POST, instance=request.user)
-        print('was up')
         if form.is_valid():
             form.save()
             return redirect('profile')
