@@ -26,6 +26,13 @@
     object-fit: cover;
 }
 
+.cart-item input{
+    background: transparent;
+    border: none;
+    text-align: center;
+}
+
+
 .quantity-container button,
 .quantity-container input {
     width: 2rem;
