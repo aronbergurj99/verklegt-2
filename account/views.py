@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from account.forms import SignUpForm
+from account.forms import SignUpForm, ChangeInfoForm
+
 # from account.models import RegisteredUser
 
 account = {
@@ -41,4 +42,17 @@ def register(request):
 
     return render(request, 'account/register.html', {
         'form': SignUpForm()
+    })
+
+def change_info(request):
+    if request.method == 'POST':
+        form = ChangeInfoForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+        else:
+            print(form)
+
+    return render(request, 'account/change_info.html', {
+        'form': ChangeInfoForm(instance=request.user)
     })
