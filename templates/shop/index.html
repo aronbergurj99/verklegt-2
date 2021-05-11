@@ -1,8 +1,9 @@
 
 {% extends 'base.html' %}
 {% block content %}
-    {% for product in products %}
+{% for product in products %}
 
-        {% include 'shop/single_product.html' with product=product ratings=ratings %}
-    {% endfor %}
+    {% include 'shop/single_product.html' with product=product ratings=ratings %}
+{% endfor %}
+
 {% endblock %}

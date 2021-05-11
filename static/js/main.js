@@ -3,8 +3,12 @@ var products;
 let searchResults = document.getElementById("search-result");
 let searchInput = document.getElementById("search");
 let filteredArr = []
-//function to retrieve all products when searching
 
+//small cart lenght on navbar
+let cartLen = 0;
+
+
+//function to retrieve all products when searching
 function getProducts() {
 
   var xhttp = new XMLHttpRequest();
@@ -56,5 +60,28 @@ function search() {
   }
 }
 
+function updateCartNavIcon() {
 
+}
+function getCartLen() {
 
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      cartLen = JSON.parse(this.response)['cart-items'];
+      changeCartIconLen()
+    }
+  };
+  xhttp.open("GET", '/cart/get-cart-len', true);
+  xhttp.send();
+}
+
+function changeCartIconLen() {
+  let lenValue = document.getElementById('cart-len-display');
+  console.log(lenValue.innerText)
+  if (Number(lenValue.innerText) !== cartLen) {
+    lenValue.innerText = cartLen;
+  }
+}
+
+getCartLen()

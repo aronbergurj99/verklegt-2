@@ -13,7 +13,10 @@
                 <a class="nav-link" href="{% url 'register' %}">Sign up</a>
                 <a class="nav-link" href="{% url 'login' %}">Log in</a>
             {% endif %}
-            <a class="nav-link" href="{% url 'cart' %}"><i class="fas fa-shopping-cart" style="font-size: 2rem"></i></a>
+            <a class="nav-link cart-nav" href="{% url 'cart' %}">
+                <span class="circle" id="cart-len-display"></span>
+                <i class="fas fa-shopping-cart" style="font-size: 2rem"></i>
+            </a>
         </div>
     </div>
 </nav>
