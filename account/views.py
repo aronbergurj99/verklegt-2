@@ -48,13 +48,10 @@ def register(request):
 def change_info(request):
     if request.method == 'POST':
         form = ChangeInfoForm(data=request.POST, instance=request.user)
+        print('was up')
         if form.is_valid():
             form.save()
             return redirect('profile')
-        else:
-            print(form)
-
-
     return render(request, 'account/change_info.html', {
         'form': ChangeInfoForm(instance=request.user)
     })
