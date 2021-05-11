@@ -1,8 +1,6 @@
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from account.forms import SignUpForm, LoginForm
-# from account.models import RegisteredUser
+from account.forms import SignUpForm, ChangeInfoForm, LoginForm
 
 account = {
     'name': 'Jón Jónsson',
@@ -31,7 +29,7 @@ orders = [
 
 # Create your views here.
 def profile(request):
-    return render(request, 'account/account.html', context={'account': account, 'search_history': search_history, 'orders': orders})
+    return render(request, 'account/account.html', context={'account': request.user, 'search_history': search_history, 'orders': orders})
 
 
 def register(request):
@@ -47,6 +45,19 @@ def register(request):
         'form': form
     })
 
+def change_info(request):
+    if request.method == 'POST':
+        form = ChangeInfoForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+        else:
+            print(form)
+
+
+    return render(request, 'account/change_info.html', {
+        'form': ChangeInfoForm(instance=request.user)
+    })
 
 class UserLoginView(LoginView):
 
