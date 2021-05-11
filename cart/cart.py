@@ -52,10 +52,10 @@ class Cart(object):
             yield item
 
     def __len__(self):
-        return sum(item['quantity'] for item in self.cart.values)
+        return sum([item['quantity'] for item in self])
 
     def get_total_price(self):
-        return sum(item['price'] for item in self)
+        return sum(item['price'] * item['quantity'] for item in self)
 
     def clear(self):
         pass
