@@ -121,6 +121,7 @@ this is all the detailed product stuff
  */
 
 .big-image {
+    flex-direction: row;
     padding-top: 30px;
     height: 450px;
     width: 450px;
@@ -131,6 +132,9 @@ this is all the detailed product stuff
     flex-direction: column;
     float: left;
     padding-top: 30px;
+    line-height: 300%;
+    width: 500px;
+    word-wrap: break-word;
 }
 
 a {
