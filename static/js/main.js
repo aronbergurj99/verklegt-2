@@ -82,6 +82,29 @@ function changeCartIconLen() {
   if (Number(lenValue.innerText) !== cartLen) {
     lenValue.innerText = cartLen;
   }
-}
+};
+
+
+$(document).ready(function() {
+  $('#filter').on('change', function (e){
+    e.preventDefault();
+    var type = $('#filter').val();
+    console.log(type)
+    $.ajax( {
+      url: '/?type_filter=' + type,
+      success: function(resp) {
+        var newHtml = resp.data.map(d => {
+
+          return '<div class="small-product"><a href="/products/${d.id}" ></a><div class="small-product-text"><h1>${d.name}</h1><p><b>Price: ${d.price}</b></p> </div></button></div>'
+              
+        });
+        $('.contents').html(newHtml.join(''));
+      },
+      error: function(xhr, status, error) {
+        console.log(error)
+      }
+    })
+  });
+});
 
 getCartLen()

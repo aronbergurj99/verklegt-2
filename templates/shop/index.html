@@ -1,9 +1,16 @@
-
 {% extends 'base.html' %}
 {% block content %}
-{% for product in products %}
+    <div classname="sort-div">
+        <select class="form-select" name="filter" id="filter">
+            {% for type in types %}
 
-    {% include 'shop/single_product.html' with product=product ratings=ratings %}
-{% endfor %}
+                <option value="{{ type.type }}">{{ type.type }}</option>
 
+            {% endfor %}
+        </select>
+    </div>
+    {% for product in products %}
+
+        {% include 'shop/single_product.html' with product=product ratings=ratings %}
+    {% endfor %}
 {% endblock %}
