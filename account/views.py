@@ -12,7 +12,6 @@ account = {
     'Street': 'Melteigur 7'
 }
 
-
 search_history = [
     'Coco pops',
     'Cocoa puffs',
@@ -69,6 +68,7 @@ def register(request):
         'form': form
     })
 
+
 def change_info(request):
     if request.method == 'POST':
         form = ChangeInfoForm(data=request.POST, instance=request.user)
@@ -79,6 +79,6 @@ def change_info(request):
         'form': ChangeInfoForm(instance=request.user)
     })
 
-class UserLoginView(LoginView):
 
+class UserLoginView(LoginView):
     LoginView.form_class = LoginForm
