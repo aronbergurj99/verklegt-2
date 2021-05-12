@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container emp-profile">
-            <form method="post">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
                             <img src="{{ image_root }}{{ profile_picture }}" alt=""/>
                             <div class="file btn btn-lg btn-primary">
                                 Change Photo
-                                <input type="file" name="file"/>
+                                {{ form }}
                             </div>
                         </div>
+                        <input type="submit" class="btn btn-primary" value="Change profile picture" />
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">

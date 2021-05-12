@@ -58,4 +58,6 @@ class ChangeInfoForm(UserChangeForm):
         )
         exclude = ('username', 'password',)
 
+class ChangeProfilePicture(forms.Form):
+    file = forms.ImageField()
 
