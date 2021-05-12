@@ -1,7 +1,9 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from shop.models import Product
 from django.views.decorators.http import require_POST
 from .cart import Cart
+
 
 # Create your views here.
 def get_items_in_cart(request):
@@ -13,6 +15,12 @@ def get_items_in_cart(request):
         "products": products,
         "total_price": total_price,
     })
+
+
+def get_cart_length(request):
+    # used for small cart icon on navbar, return the number of items in cart.
+    cart = Cart(request)
+    return JsonResponse({"cart-items": len(cart)})
 
 
 @require_POST

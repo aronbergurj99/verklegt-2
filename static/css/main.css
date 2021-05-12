@@ -108,13 +108,15 @@ body {
 }
 .contents {
     /* padding-top: 20px; */
+    display: inline-block;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: flex-start;
     min-height: 90vh;
     overflow-y: auto;
 
 }
+
 
 /*
 this is all the detailed product stuff
@@ -179,4 +181,22 @@ this is for the search results
 
 .add-to-cart-btn {
     padding: 10px
+}
+
+.circle {
+    position: absolute;
+    top: -4px;
+    right: 0px;
+    z-index: 10;
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+
+    text-align: center;
+}
+
+.cart-nav {
+    position: relative;
 }
