@@ -107,7 +107,7 @@ $(document).ready(function() {
         <p><b>Price: ${d.price}</b></p>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn">add to cart<i class="fas fa-cart-plus" onclick="addToCart(${d.id}, true, false)"></i></button>
+    <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn" onclick="addToCart(${d.id}, true, false)">add to cart<i class="fas fa-cart-plus"></i></button>
 
 </div>
 `
