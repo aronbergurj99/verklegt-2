@@ -1,16 +1,23 @@
-* {
-    overflow-x: hidden;
+/* Hide scrollbar for Chrome, Safari and Opera */
+* ::-webkit-scrollbar {
+  display: none;
 }
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 body {
     font-family: Montserrat;
-
     height: 100vh;
-
 }
 
 .main-body {
     overflow-y: scroll;
     height: 90%;
+
 }
 
 .navbar {
@@ -47,7 +54,7 @@ body {
     min-height: 0px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
-    z-index: 1;
+    z-index: 10;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 
@@ -110,8 +117,7 @@ body {
 }
 .contents {
     /* padding-top: 20px; */
-    display: inline-block;
-    width: auto;
+
     min-height: 90vh;
     overflow-y: auto;
 
@@ -214,7 +220,7 @@ this is for the search results
     position: absolute;
     top: 0px;
     right: 0px;
-    z-index: 12;
+    z-index: 10;
     height: 25px;
     width: 25px;
     background-color: #bbb;
@@ -232,8 +238,5 @@ this is for the search results
     align-items: center;
     justify-content: center;
     align-content: center;
-    height: 100%;
-}
-.container-fluid {
     height: 100%;
 }
