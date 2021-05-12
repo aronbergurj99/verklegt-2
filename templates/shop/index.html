@@ -1,6 +1,28 @@
 
 {% extends 'base.html' %}
 {% block content %}
+    <!-- <div class="filter-div">
+        <button class="dropbtn">Filter by type</button>
+        <div class="dropdown-content">
+            <a href="#">Sugary</a>
+            <a href="#">Healthy</a>
+            <a href="#">Keto</a>
+         </div>
+    <div/> -->
+    <div classname="sort-div">
+        <select name="filter" id="filter-list">
+            <option value="all">All</option>
+            <option value="sugary">Sugary</option>
+            <option value="healthy">Healthy</option>
+            <option value="keto">Keto</option>
+        </select>
+        <select name="order" id="order-list">
+           <option value="price">Price</option>
+           <option value="name">Name</option>
+        </select>
+    </div>
+
+
     {% for product in products %}
 
         {% include 'shop/single_product.html' with product=product ratings=ratings %}

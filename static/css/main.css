@@ -136,3 +136,11 @@ this is for the search results
 .add-to-cart-btn {
     padding: 10px
 }
+
+/* filter div*/
+.sort-div {
+    display: flex;
+    flex-direction: column;
+
+}
+
