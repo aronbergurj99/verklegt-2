@@ -106,11 +106,9 @@ $(document).ready(function() {
         <h1>${d.name}</h1>
         <p><b>Price: ${d.price}</b></p>
     </div>
-    <form action="/cart/add-to-cart/${d.id}" method="post">
-        <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
-        <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn">add to cart<i class="fas fa-cart-plus"></i></button>
-        <input type="hidden" name="next" value="/">
-    </form>    
+
+    <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn">add to cart<i class="fas fa-cart-plus" onclick="addToCart(${d.id}, true, false)"></i></button>
+
 </div>
 `
 
@@ -140,11 +138,8 @@ $(document).ready(function() {
         <h1>${d.name}</h1>
         <p><b>Price: ${d.price}</b></p>
     </div>
-    <form action="/cart/add-to-cart/${d.id}" method="post">
-        <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
-        <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn">add to cart<i class="fas fa-cart-plus"></i></button>
-        <input type="hidden" name="next" value="/">
-    </form>    
+    <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn" onclick="addToCart(${d.id}, true, false)">add to cart<i class="fas fa-cart-plus"></i></button>
+   
 </div>
 `
 
@@ -179,13 +174,17 @@ function addToCart(id, add, incart) {
         csrfmiddlewaretoken: csrfToken
       },
       success: function(resp) {
-        getCartLen()
+        cartLen = resp.data['len']
+        changeCartIconLen()
         if (incart) {
           // if the add to cart button is the in cart html then we need to update a few things.
           let cartInput = document.getElementById("cart-input-" + id);
           let cartItem = document.getElementById("cart-item-" + id);
+          let totalPrice = document.getElementById("total-price");
+          totalPrice.innerText = resp.data['total-price']
           console.log()
           cartInput.value = Number(cartInput.value) + increase;
+
           if (cartInput.value ==0) {
             cartItem.remove();
           }

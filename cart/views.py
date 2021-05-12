@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from shop.models import Product
 from django.views.decorators.http import require_POST
@@ -27,11 +27,12 @@ def get_cart_length(request):
 def add_to_cart(request, product_id):
     cart = Cart(request)
     cart.add_to_cart(product_id)
-    return JsonResponse({"message": "success"})
+    return JsonResponse({"data": {"len" : len(cart), "total-price": cart.get_total_price()}})
 
 
 @require_POST
 def remove_from_cart(request, product_id):
     cart = Cart(request)
     cart.remove_from_cart(product_id)
-    return JsonResponse({"message": "success"})
+    return JsonResponse({"data": {"len": len(cart), "total-price": cart.get_total_price()}})
+
