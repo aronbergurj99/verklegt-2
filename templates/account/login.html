@@ -1,8 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form method="POST" class="form form-horizontal">
+    <div class="sign-up">
+    <h1>Plz login you kind sir!!</h1>
+    <form method="POST" action="{% url 'login' %}" class="form form-horizontal">
         {% csrf_token %}
-        {{ form }}
+
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+
+
+
+        {% for field in form %}
+            {% include 'account/single_input.html' with field=field %}
+        {% endfor %}
         <input type="submit" class="btn btn-primary" value="Login" />
     </form>
+    </div>
+
 {% endblock%}

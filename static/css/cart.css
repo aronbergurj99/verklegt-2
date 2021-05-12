@@ -2,9 +2,6 @@
     width: 100vw;
 }
 
-.html {
-    overflow-x: hidden;
-}
 .cart-items {
     display: flex;
     flex-direction: column;
@@ -28,6 +25,13 @@
     width: 100px;
     object-fit: cover;
 }
+
+.cart-item input{
+    background: transparent;
+    border: none;
+    text-align: center;
+}
+
 
 .quantity-container button,
 .quantity-container input {

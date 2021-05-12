@@ -1,6 +1,6 @@
 
 <div class="small-product">
-    <a href="{{ product.id }}">
+    <a href="{% url 'product-details' product.id %}">
         <img class="small-image" src="{{ product.productimage_set.first.image.url}}"/>
     </a>
     <div class="small-product-text">

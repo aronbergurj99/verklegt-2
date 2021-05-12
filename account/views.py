@@ -1,7 +1,7 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from account.forms import SignUpForm
-# from account.models import RegisteredUser
+from account.forms import SignUpForm, ChangeInfoForm, LoginForm, ChangeProfilePicture
+from account.models import ProfilePicture
 
 account = {
     'name': 'Jón Jónsson',
@@ -11,7 +11,6 @@ account = {
     'zip': '300',
     'Street': 'Melteigur 7'
 }
-
 
 search_history = [
     'Coco pops',
@@ -27,9 +26,34 @@ orders = [
     'Order #5'
 ]
 
+
 # Create your views here.
 def profile(request):
-    return render(request, 'account/account.html', context={'account': account, 'search_history': search_history, 'orders': orders})
+    if request.method == 'POST':
+        form = ChangeProfilePicture(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.cleaned_data.get('file')
+            try:
+                profile_picture = ProfilePicture.objects.get(user=request.user)
+                profile_picture.profile_image = image
+                profile_picture.save()
+            except:
+                new_profile_picture = ProfilePicture(user=request.user, profile_image=image)
+                new_profile_picture.save()
+
+    try:
+        profile_picture = ProfilePicture.objects.get(user=request.user).profile_image
+    except:
+        profile_picture = 'profile_pictures/basic_picture.jpg'
+    return render(request, 'account/account.html', context={
+        'account': request.user,
+        'search_history': search_history,
+        'orders': orders,
+        'profile_picture': profile_picture,
+        'image_root': '/media/',
+        'form': ChangeProfilePicture()
+    })
+
 
 def register(request):
     if request.method == 'POST':
@@ -37,12 +61,24 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('login')
+    else:
+        form = SignUpForm()
 
     return render(request, 'account/register.html', {
-        'form': SignUpForm()
+        'form': form
     })
 
-def login(request):
-    return render(request, 'account/login.html', {
-        'form': LoginForm()
+
+def change_info(request):
+    if request.method == 'POST':
+        form = ChangeInfoForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    return render(request, 'account/change_info.html', {
+        'form': ChangeInfoForm(instance=request.user)
     })
+
+
+class UserLoginView(LoginView):
+    LoginView.form_class = LoginForm

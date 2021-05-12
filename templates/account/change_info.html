@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content  %}
+    <div class="sign-up">
+    <h1>Change information here</h1>
+    <form class="form form-horizontal" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.name != 'password' %}
+                {% include 'account/single_input.html' with field=field %}
+            {% endif %}
+        {% endfor %}
+        <input type="submit" class="btn btn-primary" value="Change information" />
+    </form>
+    </div>
+
+{% endblock %}

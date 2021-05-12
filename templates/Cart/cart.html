@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
     <div class="cart-container">
         <div class="cart-item cart-info">
@@ -19,7 +18,10 @@
         <div class="cart-checkout">
             <p>Checkout total: {{ total_price }}</p>
             <button class="btn btn-lg btn-primary">Browse more</button>
-            <button class="btn btn-lg btn-primary">Checkout</button>
+            <form action="{% url 'contact_phase' %}" method="GET">
+                <button type="submit" class="btn btn-lg btn-primary">Checkout</button>
+            </form>
+
 
         </div>
     </div>

@@ -1,41 +1,44 @@
 
 var products;
-var images;
-var searchResults = document.getElementById("search-result");
-var searchInput = document.getElementById("search");
+let searchResults = document.getElementById("search-result");
+let searchInput = document.getElementById("search");
 let filteredArr = []
+
+//small cart lenght on navbar
+let cartLen = 0;
+
+
 //function to retrieve all products when searching
 function getProducts() {
 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var data = JSON.parse(this.response)
-      products = data['products']
-      images = data['images']
+      products = JSON.parse(this.response).data
+      search()
     }
   };
-  xhttp.open("GET", "search", true);
+  xhttp.open("GET", '/search', true);
   xhttp.send();
 }
-getProducts()
 
 
-function createSearchResult(product, image) {
+
+function createSearchResult(product) {
   var href = document.createElement("a");
-  href.href = product.id
+  href.href = '/products/' + product.id
 
   var container = document.createElement("div");
   container.className = "single-search-result";
 
-  var name = document.createElement("b");
+  var name = document.createElement("p");
   name.innerHTML = product.name;
 
-  var productPrice = document.createElement("b");
+  var productPrice = document.createElement("p");
   productPrice.innerHTML = "Price: " + product.price;
 
   var productImage = document.createElement("img");
-  productImage.setAttribute("src", "media/" + image.image.toString())
+  productImage.setAttribute("src", product.image)
   productImage.className = "x-small-images"
   container.appendChild(name);
   container.appendChild(productPrice);
@@ -46,34 +49,62 @@ function createSearchResult(product, image) {
 }
 
 function search() {
+  if (!products) {
+    getProducts()
+  }
   searchResults.innerHTML = ""
-
   filteredArr = products.filter(info => info['name'].toLowerCase().includes(searchInput.value.toLowerCase()));
-  console.log(products);
-  console.log(images)
-  for (var i = 0; i < filteredArr.length; i++) {
-    for (var j=0; j < images.length; j++) {
-      if (images[j].product == filteredArr[i].id) {
-        createSearchResult(filteredArr[i], images[j]);
+
+  for (let i = 0; i < filteredArr.length; i++) {
+    createSearchResult(filteredArr[i]);
+  }
+}
+
+function updateCartNavIcon() {
+
+}
+function getCartLen() {
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      cartLen = JSON.parse(this.response)['cart-items'];
+      changeCartIconLen()
+    }
+  };
+  xhttp.open("GET", '/cart/get-cart-len', true);
+  xhttp.send();
+}
+
+function changeCartIconLen() {
+  let lenValue = document.getElementById('cart-len-display');
+  console.log(lenValue.innerText)
+  if (Number(lenValue.innerText) !== cartLen) {
+    lenValue.innerText = cartLen;
+  }
+};
+
+
+$(document).ready(function() {
+  $('#filter').on('change', function (e){
+    e.preventDefault();
+    var type = $('#filter').val();
+    console.log(type)
+    $.ajax( {
+      url: '/?type_filter=' + type,
+      success: function(resp) {
+        var newHtml = resp.data.map(d => {
+
+          return '<div class="small-product"><a href="/products/${d.id}" ></a><div class="small-product-text"><h1>${d.name}</h1><p><b>Price: ${d.price}</b></p> </div></button></div>'
+              
+        });
+        $('.contents').html(newHtml.join(''));
+      },
+      error: function(xhr, status, error) {
+        console.log(error)
       }
-    }
+    })
+  });
+});
 
-  }
-}
-
-function increaseQuantity(id, increase) {
-  let quantity = document.getElementById(id + "-input");
-  let qValue = quantity.value;
-  let value = Number(qValue);
-
-  if (increase) {
-    value += 1;
-  } else {
-    value -=1;
-    if (value < 0) {
-      value = 0;
-    }
-  }
-  quantity.value = value.toString()
-
-}
+getCartLen()
