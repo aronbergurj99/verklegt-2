@@ -84,27 +84,80 @@ function changeCartIconLen() {
   }
 };
 
+var order = 'name';
+var type = '';
 
 $(document).ready(function() {
+
   $('#filter').on('change', function (e){
     e.preventDefault();
-    var type = $('#filter').val();
-    console.log(type)
+    type = $('#filter').val();
+    order = $('#order').val();
     $.ajax( {
-      url: '/?type_filter=' + type,
+      url: '/?type_filter=' + type + '&order=' + order,
       success: function(resp) {
         var newHtml = resp.data.map(d => {
+          return `
+<div class="small-product">
+    <a href="/products/${d.id}">
+        <img class="small-image" src="${d.image}"/>
+    </a>
+    <div class="small-product-text">
+        <h1>${d.name}</h1>
+        <p><b>Price: ${d.price}</b></p>
+    </div>
+    <form action="/cart/add-to-cart/${d.id}" method="post">
+        <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
+        <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn">add to cart<i class="fas fa-cart-plus"></i></button>
+        <input type="hidden" name="next" value="/">
+    </form>    
+</div>
+`
 
-          return '<div class="small-product"><a href="/products/${d.id}" ></a><div class="small-product-text"><h1>${d.name}</h1><p><b>Price: ${d.price}</b></p> </div></button></div>'
-              
         });
-        $('.contents').html(newHtml.join(''));
+        $('.products-index').html(newHtml.join(''));
       },
       error: function(xhr, status, error) {
         console.log(error)
       }
     })
   });
+
+    $('#order').on('change', function (e){
+    e.preventDefault();
+    type = $('#filter').val();
+    order = $('#order').val();
+    $.ajax( {
+      url: '/?type_filter=' + type + '&order=' + order,
+      success: function(resp) {
+        var newHtml = resp.data.map(d => {
+          return `
+<div class="small-product">
+    <a href="/products/${d.id}">
+        <img class="small-image" src="${d.image}"/>
+    </a>
+    <div class="small-product-text">
+        <h1>${d.name}</h1>
+        <p><b>Price: ${d.price}</b></p>
+    </div>
+    <form action="/cart/add-to-cart/${d.id}" method="post">
+        <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
+        <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn">add to cart<i class="fas fa-cart-plus"></i></button>
+        <input type="hidden" name="next" value="/">
+    </form>    
+</div>
+`
+
+        });
+        $('.products-index').html(newHtml.join(''));
+      },
+      error: function(xhr, status, error) {
+        console.log(error)
+      }
+    })
+  });
+
+
 });
 
 getCartLen()

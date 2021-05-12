@@ -7,13 +7,17 @@ from django.http import JsonResponse
 def index(request):
     if 'type_filter' in request.GET:
         type_filter = request.GET['type_filter']
+        if 'order' in request.GET:
+            order = request.GET['order']
+        else:
+            order = 'name'
+
         products = [{
             'id': x.id,
             'name': x.name,
             'price': x.price,
-            #'image': x.productimage_set.first.image,
-        } for x in Product.objects.filter(type__type__contains=type_filter)]
-        print(products)
+            'image': x.productimage_set.first().image.url,
+        } for x in Product.objects.filter(type__type__contains=type_filter).order_by(order)]
         return JsonResponse({"data": products})
 
     # Grabs all products from the db, and returns the main template, and products.
