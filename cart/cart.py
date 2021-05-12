@@ -61,6 +61,6 @@ class Cart(object):
         pass
 
     def get_items_in_cart(self):
-        products = [(item['product'],item['quantity']) for item in self]
+        products = [(item['product'], item['quantity']) for item in self]
 
         return products

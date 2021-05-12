@@ -160,4 +160,42 @@ $(document).ready(function() {
 
 });
 
+function addToCart(id, add, incart) {
+  var url;
+  var increase;
+  if (add == true) {
+    url = "/cart/add-to-cart/" + id
+    increase = 1;
+  } else {
+    url = "/cart/remove-from-cart/" + id
+    increase = -1;
+  }
+
+  $(document).ready(function () {
+    $.ajax( {
+      type: "POST",
+      url: url,
+      data: {
+        csrfmiddlewaretoken: csrfToken
+      },
+      success: function(resp) {
+        getCartLen()
+        if (incart) {
+          // if the add to cart button is the in cart html then we need to update a few things.
+          let cartInput = document.getElementById("cart-input-" + id);
+          let cartItem = document.getElementById("cart-item-" + id);
+          console.log()
+          cartInput.value = Number(cartInput.value) + increase;
+          if (cartInput.value ==0) {
+            cartItem.remove();
+          }
+        }
+      },
+      error: function (xhr, status, error) {
+        console.log(error)
+      }
+    });
+  });
+};
+
 getCartLen()

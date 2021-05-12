@@ -27,11 +27,11 @@ def get_cart_length(request):
 def add_to_cart(request, product_id):
     cart = Cart(request)
     cart.add_to_cart(product_id)
-    return redirect(cart.redirect_page())
+    return JsonResponse({"message": "success"})
 
 
 @require_POST
 def remove_from_cart(request, product_id):
     cart = Cart(request)
     cart.remove_from_cart(product_id)
-    return redirect(cart.redirect_page())
+    return JsonResponse({"message": "success"})
