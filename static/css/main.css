@@ -121,6 +121,13 @@ body {
 /*
 this is all the detailed product stuff
  */
+.one-or-more-images{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    padding-bottom: 30px;
+    padding-right: 30px;
+}
 
 .big-image {
     flex-direction: row;
@@ -132,11 +139,11 @@ this is all the detailed product stuff
 
 .detailed-product-info {
     flex-direction: column;
-    float: left;
     padding-top: 30px;
     line-height: 300%;
     width: 500px;
     word-wrap: break-word;
+    margin-right: auto
 }
 
 a {

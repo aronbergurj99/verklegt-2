@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <img class="big-image" src="{{ product.productimage_set.first.image.url }}">
+    <div class = "one-or-more-images">
+    {% for product_image in product.productimage_set.all %}
+        <img class="big-image" src="{{ product_image.image.url }}"/>
+    {% endfor %}
+    </div>
     <div class = "detailed-product-info">
         <h1>{{ product.name }}</h1>
 
