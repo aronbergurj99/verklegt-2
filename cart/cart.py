@@ -21,8 +21,8 @@ class Cart(object):
             self.cart[str(product.id)]['quantity'] += 1
         else:
             self.cart[str(product.id)] = product_info
-
         self.save_session()
+
 
     def remove_from_cart(self, product_id):
         self.cart[str(product_id)]['quantity'] -= 1
@@ -41,18 +41,16 @@ class Cart(object):
         self.session.modified = True
 
     def __iter__(self):
-        product_ids = self.cart.keys()
-        products = Product.objects.filter(id__in=product_ids)
-        for product in products:
-            print(product)
-            self.cart[str(product.id)]['product'] = product
-        for item in self.cart.values():
+        for key, item in self.cart.items():
+            item['id'] = int(key)
             item['quantity'] = int(item['quantity'])
             item['price'] = float(item['price'])
             yield item
 
     def __len__(self):
-        return sum([item['quantity'] for item in self])
+        ret = sum([item['quantity'] for item in self])
+        print(ret)
+        return ret
 
     def get_total_price(self):
         return sum(item['price'] * item['quantity'] for item in self)
@@ -61,6 +59,7 @@ class Cart(object):
         pass
 
     def get_items_in_cart(self):
-        products = [(item['product'],item['quantity']) for item in self]
+
+        products = [(Product.objects.get(id=item['id']), item['quantity']) for item in self]
 
         return products

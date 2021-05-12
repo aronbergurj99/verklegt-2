@@ -8,6 +8,6 @@
         <p><b>Price: {{ product.price }}</b></p>
     </div>
 
-    {% include 'cart/add-to-cart.html' %}
+    {% include 'cart/add-to-cart.html' with product=product%}
 
 </div>

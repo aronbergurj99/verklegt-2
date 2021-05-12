@@ -34,6 +34,11 @@
 }
 
 
+.quantity-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
 .quantity-container button,
 .quantity-container input {
     width: 2rem;
@@ -42,6 +47,8 @@
     text-align: center ;
 
 }
+
+
 .quantity-container button {
     background-color: transparent;
 }
