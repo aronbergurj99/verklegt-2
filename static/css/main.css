@@ -17,7 +17,6 @@ body {
 .main-body {
     overflow-y: scroll;
     height: 90%;
-
 }
 
 .navbar {
@@ -117,7 +116,6 @@ body {
 }
 .contents {
     /* padding-top: 20px; */
-
     min-height: 90vh;
     overflow-y: auto;
 

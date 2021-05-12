@@ -3,9 +3,11 @@
     <p>{{ product.name }}</p>
     <p>{{ product.price }}</p>
 
-    <form action="{% url 'add-to-cart' product.id %}" method="post">
+
+    <div class="quantity-container">
+        <form action="{% url 'add-to-cart' product.id %}" method="post">
         {% csrf_token %}
-        <button type="submit">+</button>
+        <button type="submit"><i class="fas fa-plus"></i></button>
         <input type="hidden" name="next" value="{{ request.path }}">
     </form>
 
@@ -13,7 +15,9 @@
 
     <form action="{% url 'remove-from-cart' product.id %}" method="post">
         {% csrf_token %}
-        <button type="submit">-</button>
+        <button type="submit"><i class="fas fa-minus"></i></button>
         <input type="hidden" name="next" value="{{ request.path }}">
     </form>
+    </div>
+
 </div>
