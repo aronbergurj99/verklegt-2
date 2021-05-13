@@ -256,6 +256,12 @@ function addToCart(id, add, incart) {
     });
   });
 };
+//function to change picture in detailed view
+function changePicture(url, product_id, el) {
+  let bigImage = document.getElementById('big-image-' + product_id);
+  bigImage.setAttribute("src", url);
+
+}
 
 getSearchHistory()
 getProducts()

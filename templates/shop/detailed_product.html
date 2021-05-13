@@ -2,30 +2,34 @@
 
 {% block content %}
     <div class = "content-on-detailed-product">
-    <div class = "one-or-more-images">
-    {% for product_image in product.productimage_set.all %}
-        <img class="big-image" src="{{ product_image.image.url }}"/>
-    {% endfor %}
-    </div>
-    <div class = "detailed-product-info">
-        <h1>{{ product.name }}</h1>
+        <div class = "one-or-more-images">
+            <img class="big-image" src="{{ product.productimage_set.first.image.url }}" id="big-image-{{ product.id }}"/>
+            <div style="display: flex; flex-direction: column; width: auto; height: auto; margin: 20px; justify-content: flex-start;">
+                {% for product_image in product.productimage_set.all %}
 
-        {% if product.rating_set.first.rating %}
-            <p>rating: {{ product.rating_set.first.rating}} ({{ product.rating_set.first.number_of_ratings }} ratings)</p>
-        {% else %}
-            <p>rating: no ratings yet</p>
-        {% endif %}
-        <b>Type: {{ product.type.type}}</b>
-        <h2>Description:</h2>
-        <p>{{ product.description }}</p>
-        <b>Price: {{ product.price }} Kr</b>
-        {% include 'cart/add-to-cart.html' %}
+                    <a  onclick="changePicture('{{ product_image.image.url }}', '{{ product.id }}', this)" style="opacity: .6;" >
+                        <img class="preview-image" src="{{ product_image.image.url }}" />
+                    </a>
 
+                {% endfor %}
+            </div>
+        </div>
+        <div class = "detailed-product-info">
+            <h1>{{ product.name }}</h1>
+
+            {% if product.rating_set.first.rating %}
+                <p>rating: {{ product.rating_set.first.rating}} ({{ product.rating_set.first.number_of_ratings }} ratings)</p>
+            {% else %}
+                <p>rating: no ratings yet</p>
+            {% endif %}
+            <b>Type: {{ product.type.type}}</b>
+            <h2>Description:</h2>
+            <p>{{ product.description }}</p>
+            <b>Price: {{ product.price }} Kr</b>
+            {% include 'cart/add-to-cart.html' %}
+
+        </div>
     </div>
-    </div>
-    <!--
-    TODO: css, add to cart
-    i am going to steal add to cart when it is done1!
-    -->
+
 
 {% endblock %}
