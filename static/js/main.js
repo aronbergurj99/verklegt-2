@@ -54,7 +54,7 @@ function createSearchResult(product) {
   name.innerHTML = product.name;
 
   var productPrice = document.createElement("p");
-  productPrice.innerHTML = "Price: " + product.price;
+  productPrice.innerHTML = "Price: " + product.price + " Kr";
 
   var productImage = document.createElement("img");
   productImage.setAttribute("src", product.image)
