@@ -6,6 +6,8 @@ from account.forms import SignUpForm, ChangeInfoForm, LoginForm, ChangeProfilePi
 from account.models import ProfilePicture, SearchHistory
 from shop.models import Product
 from django.views.decorators.http import require_POST
+from account.search_history import SearchHistorySession
+
 
 account = {
     'name': 'Jón Jónsson',
@@ -90,7 +92,6 @@ class UserLoginView(LoginView):
 def get_search_history(request):
     if request.user.is_authenticated:
         user = get_object_or_404(User, id=request.user.id)
-        data = list(user.searchhistory_set.all().order_by('datetime').values())
         data = user.searchhistory_set.all().order_by('-datetime').values('product_id')
         products = []
         for item in data:
@@ -102,7 +103,9 @@ def get_search_history(request):
             'image': x.productimage_set.first().image.url,
         } for x in products]
     else:
-        pass
+        search_history = SearchHistorySession(request)
+
+        products = search_history.get_history()
     return JsonResponse({"data": products}, safe=False)
 
 
@@ -113,8 +116,11 @@ def add_search_history(request, product_id):
         product = get_object_or_404(Product, id=product_id)
         sh = SearchHistory(user=user, product=product)
         sh.save()
-        print('success')
     else:
-        print('fail')
-        pass
+        search_history = SearchHistorySession(request)
+        print('sucess1')
+        search_history.add_search_history(product_id)
+        print("sucess")
+
+
     return JsonResponse({"message": "successfully added search to search history"})
