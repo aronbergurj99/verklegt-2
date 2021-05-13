@@ -47,6 +47,9 @@ function createSearchResult(product) {
   var container = document.createElement("div");
   container.className = "single-search-result";
 
+  var c = document.createElement("div")
+  c.style="display: flex; flex-directino: row; align-items: center;"
+
   var name = document.createElement("p");
   name.innerHTML = product.name;
 
@@ -56,9 +59,12 @@ function createSearchResult(product) {
   var productImage = document.createElement("img");
   productImage.setAttribute("src", product.image)
   productImage.className = "x-small-images"
-  container.appendChild(name);
+
+  c.appendChild(productImage);
+  c.appendChild(name);
+
+  container.appendChild(c);
   container.appendChild(productPrice);
-  container.appendChild(productImage);
   href.appendChild(container);
 
   searchResults.appendChild(href);

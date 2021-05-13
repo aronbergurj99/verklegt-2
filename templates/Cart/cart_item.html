@@ -1,7 +1,7 @@
 <div class="cart-item" id="cart-item-{{ product.id }}">
     <img src="{{ product.productimage_set.first.image.url }}">
     <p>{{ product.name }}</p>
-    <p>{{ product.price }}</p>
+    <p>{{ product.price }} Kr</p>
 
     <div class="quantity-container">
     <button type="submit" onclick="addToCart({{ product.id }}, true, true)"><i class="fas fa-plus"></i></button>

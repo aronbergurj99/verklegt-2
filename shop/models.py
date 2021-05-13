@@ -13,7 +13,7 @@ class Product(models.Model):
     name = models.CharField(max_length=80)
     description = models.CharField(max_length=255)
     type = models.ForeignKey(Type, on_delete=models.CASCADE)
-    price = models.DecimalField(decimal_places=2, max_digits=5)
+    price = models.PositiveIntegerField()
     stock = models.PositiveIntegerField()
 
     def __str__(self):

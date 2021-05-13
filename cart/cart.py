@@ -52,7 +52,7 @@ class Cart(object):
         return ret
 
     def get_total_price(self):
-        return sum(item['price'] * item['quantity'] for item in self)
+        return int(sum(item['price'] * item['quantity'] for item in self))
 
     def clear(self):
         # TODO finish clear cart
