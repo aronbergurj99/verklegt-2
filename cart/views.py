@@ -27,7 +27,7 @@ def get_cart_length(request):
 def add_to_cart(request, product_id):
     cart = Cart(request)
     cart.add_to_cart(product_id)
-    return JsonResponse({"data": {"len" : len(cart), "total-price": cart.get_total_price()}})
+    return JsonResponse({"data": {"len": len(cart), "total-price": cart.get_total_price()}})
 
 
 @require_POST
@@ -36,3 +36,8 @@ def remove_from_cart(request, product_id):
     cart.remove_from_cart(product_id)
     return JsonResponse({"data": {"len": len(cart), "total-price": cart.get_total_price()}})
 
+@require_POST
+def clear_cart(request):
+    cart = Cart(request)
+    cart.clear()
+    return redirect('/cart')

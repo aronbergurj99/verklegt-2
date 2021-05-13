@@ -299,6 +299,10 @@ this is for the search results
     .cart-nav {
         display: inline;
     }
+    .btn-lg {
+        font-size: 14px;
+        padding: 5px;
+    }
 }
 
 .search-bar-history {

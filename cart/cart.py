@@ -55,8 +55,8 @@ class Cart(object):
         return int(sum(item['price'] * item['quantity'] for item in self))
 
     def clear(self):
-        # TODO finish clear cart
-        pass
+        self.cart = {}
+        self.save_session()
 
     def get_items_in_cart(self):
 
