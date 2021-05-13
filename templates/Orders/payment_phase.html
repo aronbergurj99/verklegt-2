@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <div>
+                <label>{{ form.credit_card_number.label_tag }}</label>
+                {{ form.credit_card_number }}
+            </div>
+            <div>
+                <label>{{ form.credit_card_holder.label_tag }}</label>
+                {{ form.credit_card_holder }}
+            </div>
+            <div>
+                <label>{{ form.credit_card_expiry_month.label_tag }}</label>
+                {{ form.credit_card_expiry_month }}
+            </div>
+            <div>
+                <label>{{ form.credit_card_expiry_year.label_tag }}</label>
+                {{ form.credit_card_expiry_year }}
+            </div>
+            <div>
+                <label>{{ form.pvc.label_tag }}</label>
+                {{ form.pvc }}
+            </div>
+            <div>
+                <label>{{ form.paid.label_tag }}</label>
+                {{ form.paid }}
+            </div>
+            <input type="submit" id="continue_btn" class="btn btn-primary" value="Continue"/>
+            <a class="btn btn-default" href="{% url 'contact_phase' %}">Contact information</a>
+            <a class="btn btn-default" href="{% url 'payment_phase' %}">Payment information </a>
+            <a class="btn btn-default" href="{% url 'review_phase' %}">Review information</a>
+        </div>
+    </form>
+{% endblock %}
