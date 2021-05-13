@@ -205,7 +205,8 @@ this is all the detailed product stuff
     align-self: center;
     margin: 20px;
 }
-.nav-link {
+.navbar-link,
+.navbar-link > *{
     text-decoration: none;
     color: white;
 }
@@ -292,7 +293,8 @@ this is for the search results
         display: none;
     }
 
-    .nav-link {
+    .navbar-link,
+    .navbar-link > *{
         display: none;
     }
 

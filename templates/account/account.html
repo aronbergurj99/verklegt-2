@@ -8,10 +8,10 @@
                         <div class="profile-img">
                             <img src="{{ image_root }}{{ profile_picture }}" alt=""/>
                             <div class="file btn btn-lg btn-primary">
-                                Change Photo
+                                Upload Photo
                                 {{ form }}
                             </div>
-                            <input type="submit" id="profile_pic_button" class="btn btn-primary" value="Change profile picture" />
+                            <input type="submit" id="profile_pic_button" class="btn btn-primary" style="margin: 20px;" value="Change profile picture" />
                         </div>
 
                     </div>
@@ -23,8 +23,8 @@
                                     <h6>
                                         {{ account}}
                                     </h6>
-                                     <a href="{% url 'change_info' %}">Change information</a>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                     <a href="{% url 'change_info' %}" style="text-decoration: none; color: black">Change information<i class="fas fa-pen"></i></a>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist" >
                               <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
                               </li>
