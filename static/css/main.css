@@ -258,9 +258,10 @@ this is for the search results
     width: 25px;
     background-color: #bbb;
     border-radius: 50%;
-    display: inline-block;
-
     text-align: center;
+}
+#cart-len-display {
+    display: none;
 }
 
 .cart-nav {

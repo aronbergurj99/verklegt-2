@@ -73,10 +73,10 @@ function createSearchResult(product) {
 function search() {
   if (!products) {
     //json products for live seearch!!
-    getProducts()
+    setTimeout(() => {}, 500);
   }
   if (searchArr.length === 0) {
-    getSearchHistory();
+    setTimeout(() => {}, 500);
   }
   searchResults.innerHTML = ""
   filteredArr = products.filter(info => info['name'].toLowerCase().includes(searchInput.value.toLowerCase()));
@@ -154,9 +154,13 @@ function getCartLen() {
 
 function changeCartIconLen() {
   let lenValue = document.getElementById('cart-len-display');
-  if (Number(lenValue.innerText) !== cartLen) {
+  if (cartLen != 0) {
+    lenValue.style.display = "inline-block";
     lenValue.innerText = cartLen;
+  } else {
+    lenValue.style.display = "none";
   }
+
 };
 
 var order = 'name';
