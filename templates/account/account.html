@@ -56,14 +56,14 @@
                               </div>
                               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                   {% for search in search_history %}
-                                    <div class="row">
+                                    <a href="/products/{{ search.id }}" class="row" style="color: black">
                                         <div class="col-md-6">
                                             <label>{{ forloop.counter }}</label>
                                         </div>
                                         <div class="col-md-6">
                                             <p>{{ search }}</p>
                                         </div>
-                                    </div>
+                                    </a>
                                   {%  endfor %}
                               </div>
                               <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">

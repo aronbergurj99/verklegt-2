@@ -269,3 +269,12 @@ this is for the search results
         display: inline;
     }
 }
+
+.search-bar-history {
+    padding-top: 5px;
+    padding-left: 20px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    background: lightgray;
+
+}

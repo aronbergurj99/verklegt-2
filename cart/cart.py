@@ -23,7 +23,6 @@ class Cart(object):
             self.cart[str(product.id)] = product_info
         self.save_session()
 
-
     def remove_from_cart(self, product_id):
         self.cart[str(product_id)]['quantity'] -= 1
 
@@ -56,6 +55,7 @@ class Cart(object):
         return sum(item['price'] * item['quantity'] for item in self)
 
     def clear(self):
+        # TODO finish clear cart
         pass
 
     def get_items_in_cart(self):

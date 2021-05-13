@@ -1,14 +1,19 @@
 <nav class="navbar navbar-light">
     <div class="container-fluid">
+
         <div class="hamburger">
             <i class="fas fa-bars"></i>
         </div>
+
         <a class="nav-link" href="/">Home</a>
+
         <div class="dropdown">
             <input id="search" class="form-control me-2 search" type="search" autocomplete="off" placeholder="Search" aria-label="Search" onkeyup="search()" onmouseover="getProducts()">
             <div class="dropdown-content" id="search-result"></div>
         </div>
         <div class="d-flex">
+
+
             {% if user.is_authenticated %}
                 <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                 <a class="nav-link" href="{% url 'logout' %}">Log out</a>
@@ -16,6 +21,7 @@
                 <a class="nav-link" href="{% url 'register' %}">Sign up</a>
                 <a class="nav-link" href="{% url 'login' %}">Log in</a>
             {% endif %}
+
 
             <a class="nav-link cart-nav" href="{% url 'cart' %}">
                 <span class="circle" id="cart-len-display"></span>
