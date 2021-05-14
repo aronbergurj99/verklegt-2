@@ -66,7 +66,7 @@ def review_phase(request):
                 credit_card_holder = request.session['credit_card_holder'],
                 credit_card_expiry_month = request.session['credit_card_expiry_month'],
                 credit_card_expiry_year = request.session['credit_card_expiry_year'],
-                pvc = request.session['pvc']
+                cvc = request.session['cvc']
             )
             if request.user.is_authenticated:
                 new_order.user = request.user

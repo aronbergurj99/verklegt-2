@@ -20,7 +20,7 @@ class Orders(models.Model):
     credit_card_holder = models.CharField(max_length=80)
     credit_card_expiry_month = models.CharField(max_length=2)
     credit_card_expiry_year = models.CharField(max_length=2)
-    pvc = models.CharField(max_length=3)
+    cvc = models.CharField(max_length=3)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
 
