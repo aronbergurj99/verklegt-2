@@ -38,7 +38,7 @@ def payment_phase(request):
             request.session['credit_card_holder'] = request.POST['credit_card_holder']
             request.session['credit_card_expiry_month'] = request.POST['credit_card_expiry_month']
             request.session['credit_card_expiry_year'] = request.POST['credit_card_expiry_year']
-            request.session['pvc'] = request.POST['pvc']
+            request.session['cvc'] = request.POST['cvc']
             return redirect('review_phase')
     else:
         form = PaymentInfoForm(request.session)
