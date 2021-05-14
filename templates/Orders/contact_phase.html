@@ -8,11 +8,6 @@
                 <h1 class="cop123-heading">Press enter your contact information</h1>
                 {{ form|crispy }}
                 <input type="submit" class="cop123-submit-btn" value="Submit" />
-                <div class="cop123-phase-traversal">
-                    <a class="btn btn-info" href="{% url 'contact_phase' %}">Contact information</a>
-                    <a class="btn btn-info" href="{% url 'payment_phase' %}">Payment information </a>
-                    <a class="btn btn-info" href="{% url 'review_phase' %}">Review information</a>
-                </div>
             </div>
             <div class="cop123-container-right">
                 <h1 class="cop123-heading">Cart information</h1>
@@ -28,6 +23,11 @@
                         </div>
                     </div>
                 {% endfor %}
+            </div>
+            <div class="cop123-phase-traversal">
+                <a class="btn btn-info" href="{% url 'contact_phase' %}">Contact information</a>
+                <a class="btn btn-info" href="{% url 'payment_phase' %}">Payment information </a>
+                <a class="btn btn-info" href="{% url 'review_phase' %}">Review information</a>
             </div>
         </div>
     </form>

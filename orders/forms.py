@@ -31,8 +31,8 @@ class PaymentInfoForm(forms.ModelForm):
         widgets = {
             'credit_card_number': forms.widgets.NumberInput(attrs={'class': 'form-control'}),
             'credit_card_holder': forms.widgets.TextInput(attrs={'class': 'form-control'}),
-            'credit_card_expiry_month': forms.widgets.NumberInput(attrs={'class': 'form-control'}),
-            'credit_card_expiry_year': forms.widgets.NumberInput(attrs={'class': 'form-control'}),
-            'cvc': forms.widgets.NumberInput(attrs={'class': 'form-control'})
+            'credit_card_expiry_month': forms.widgets.NumberInput(attrs={'class': 'form-control', 'maxlength': '2'}),
+            'credit_card_expiry_year': forms.widgets.NumberInput(attrs={'class': 'form-control', 'maxlength': '2'}),
+            'cvc': forms.widgets.NumberInput(attrs={'class': 'form-control', 'maxlength': '3'})
         }
 
