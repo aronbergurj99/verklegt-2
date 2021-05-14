@@ -25,6 +25,10 @@ def contact_phase(request):
     else:
         form = ContactInfoForm(request.session)
     cart = Cart(request)
+
+    # if cart is empty return back to cart!
+    if len(cart) == 0:
+        return redirect('/cart')
     products = cart.get_items_in_cart()
 
     return render(request, 'orders/contact_phase.html', {'form': form, 'cart': products})

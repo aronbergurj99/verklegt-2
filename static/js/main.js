@@ -128,7 +128,6 @@ function getSearchHistory() {
       },
       success: function(resp) {
         searchArr = resp.data;
-        console.log(searchArr)
       },
       error: function (xhr, status, error) {
         console.log(error);

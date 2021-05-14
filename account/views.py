@@ -7,11 +7,12 @@ from account.models import ProfilePicture, SearchHistory
 from shop.models import Product
 from orders.models import Orders
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from account.search_history import SearchHistorySession
 
 
 # Create your views here.
-
+@login_required
 def profile(request):
     if request.method == 'POST':
         form = ChangeProfilePicture(request.POST, request.FILES)
@@ -100,9 +101,7 @@ def add_search_history(request, product_id):
         sh.save()
     else:
         search_history = SearchHistorySession(request)
-        print('sucess1')
         search_history.add_search_history(product_id)
-        print("sucess")
 
 
     return JsonResponse({"message": "successfully added search to search history"})
