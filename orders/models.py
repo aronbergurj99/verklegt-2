@@ -14,7 +14,7 @@ class Orders(models.Model):
     country = CountryField()
     city = models.CharField(max_length=80)
     street_name = models.CharField(max_length=80)
-    house_number = models.CharField(max_length=4)
+    house_number = models.CharField(max_length=10)
     postal_code = models.CharField(max_length=10)
     credit_card_number = models.CharField(max_length=16)
     credit_card_holder = models.CharField(max_length=80)
