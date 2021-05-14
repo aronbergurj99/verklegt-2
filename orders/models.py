@@ -1,6 +1,7 @@
 from django.db import models
 from shop.models import Product
 from django.contrib.auth.models import User
+from django_countries.fields import CountryField
 
 
 class Orders(models.Model):
@@ -10,7 +11,7 @@ class Orders(models.Model):
     total_price = models.DecimalField(decimal_places=2, max_digits=10)
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
-    country = models.CharField(max_length=80)
+    country = CountryField()
     city = models.CharField(max_length=80)
     street_name = models.CharField(max_length=80)
     house_number = models.CharField(max_length=4)
