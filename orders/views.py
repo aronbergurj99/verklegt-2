@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import PaymentProcessForm, PaymentInfoForm, ContactInfoForm
 from .models import Orders
+from cart.cart import Cart
 
 
 def contact_phase(request):
@@ -23,8 +24,10 @@ def contact_phase(request):
     # if a GET (or any other method) we'll create a blank form
     else:
         form = ContactInfoForm(request.session)
+    cart = Cart(request)
+    products = cart.get_items_in_cart()
 
-    return render(request, 'orders/contact_phase.html', {'form': form})
+    return render(request, 'orders/contact_phase.html', {'form': form, 'cart': products})
 
 def payment_phase(request):
     if request.method == 'POST':
@@ -39,8 +42,10 @@ def payment_phase(request):
             return redirect('review_phase')
     else:
         form = PaymentInfoForm(request.session)
+    cart = Cart(request)
+    products = cart.get_items_in_cart()
 
-    return render(request, 'orders/payment_phase.html', {'form': form})
+    return render(request, 'orders/payment_phase.html', {'form': form, 'cart': products})
 
 def review_phase(request):
     if request.method == 'POST':
@@ -68,12 +73,12 @@ def review_phase(request):
                 new_order.save()
             redirect('confirmation_phase')
             for key in list(request.session.keys()):
-                if not key.startswith("_"):  # skip keys set by the django system
+                if not key.startswith("_") and not key == 'search-history':  # skip keys set by the django system
                     del request.session[key]
+    cart = Cart(request)
+    products = cart.get_items_in_cart()
 
-    return render(request, 'orders/review_phase.html', context={
-        'information': request.session
-    })
+    return render(request, 'orders/review_phase.html', {'information': get_information(request.session), 'cart': products})
 
 def confirmation(request):
 
@@ -84,3 +89,11 @@ def get_full_price(cart):
     for key, value in cart.items():
         total_price += value['price']
     return round(total_price, 2)
+
+def get_information(session):
+    ret_dict = {}
+    for key, value in session.items():
+        if not key.startswith("_") and not key == 'search-history' and not key == 'cart':
+            new_key = key.replace('_', ' ').capitalize()
+            ret_dict[new_key] = value
+    return ret_dict
