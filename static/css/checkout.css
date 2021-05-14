@@ -16,6 +16,7 @@
 .cop123-container-right {
     padding: 20px;
     overflow-y: scroll;
+    max-height: 50vh;
 
 }
 .payment-phase-container {
