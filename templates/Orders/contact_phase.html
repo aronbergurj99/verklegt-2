@@ -13,7 +13,13 @@
             </div>
             <div>
                 <label>{{ form.country.label_tag }}</label>
-                {{ form.country }}
+                {% load countries %}
+                {% get_countries as countries %}
+                <select>
+                {% for country in countries %}
+                    <option value="{{ country.code }}">{{ country.name }}</option>
+                {% endfor %}
+                </select>
             </div>
             <div>
                 <label>{{ form.city.label_tag }}</label>
