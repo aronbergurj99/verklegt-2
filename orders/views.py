@@ -35,7 +35,7 @@ def payment_phase(request):
             request.session['credit_card_expiry_month'] = request.POST['credit_card_expiry_month']
             request.session['credit_card_expiry_year'] = request.POST['credit_card_expiry_year']
             request.session['pvc'] = request.POST['pvc']
-            redirect('review_phase')
+        return redirect('review_phase')
     else:
        form = PaymentProcessForm(request.session)
 
@@ -58,8 +58,11 @@ def review_phase(request):
             credit_card_holder = request.session['credit_card_holder'],
             credit_card_expiry_month = request.session['credit_card_expiry_month'],
             credit_card_expiry_year = request.session['credit_card_expiry_year'],
-            pvc = request.session['pvc'],
+            pvc = request.session['pvc']
         )
+        if request.user.is_authenticated:
+            new_order.user = request.user
+            new_order.save()
         redirect('confirmation_phase')
         for key in list(request.session.keys()):
             if not key.startswith("_"):  # skip keys set by the django system
@@ -74,10 +77,6 @@ def review_phase(request):
 def confirmation(request):
 
     return render(request, 'orders/confirmation.html')
-
-
-
-
 
 # Create your views here.
 def order_index(request):

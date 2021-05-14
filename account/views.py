@@ -2,15 +2,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from account.forms import SignUpForm, ChangeInfoForm, LoginForm, ChangeProfilePicture
 from account.models import ProfilePicture
-
-account = {
-    'name': 'Jón Jónsson',
-    'email': 'jon@gmail.com',
-    'country': 'Iceland',
-    'town': 'Akranes',
-    'zip': '300',
-    'Street': 'Melteigur 7'
-}
+from orders.models import Orders
 
 search_history = [
     'Coco pops',
@@ -48,7 +40,7 @@ def profile(request):
     return render(request, 'account/account.html', context={
         'account': request.user,
         'search_history': search_history,
-        'orders': orders,
+        'orders': Orders.objects.filter(user=request.user),
         'profile_picture': profile_picture,
         'image_root': '/media/',
         'form': ChangeProfilePicture()
@@ -79,6 +71,8 @@ def change_info(request):
         'form': ChangeInfoForm(instance=request.user)
     })
 
+def get_orders(user):
+    order_list = Orders.objects.filter(user=user)
 
 class UserLoginView(LoginView):
     LoginView.form_class = LoginForm

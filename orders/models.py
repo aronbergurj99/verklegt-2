@@ -1,5 +1,6 @@
 from django.db import models
 from shop.models import Product
+from django.contrib.auth.models import User
 
 
 class Orders(models.Model):
@@ -19,6 +20,7 @@ class Orders(models.Model):
     credit_card_expiry_month = models.CharField(max_length=2)
     credit_card_expiry_year = models.CharField(max_length=2)
     pvc = models.CharField(max_length=3)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
 
     def __str__(self):
