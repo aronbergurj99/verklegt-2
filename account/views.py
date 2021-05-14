@@ -71,8 +71,5 @@ def change_info(request):
         'form': ChangeInfoForm(instance=request.user)
     })
 
-def get_orders(user):
-    order_list = Orders.objects.filter(user=user)
-
 class UserLoginView(LoginView):
     LoginView.form_class = LoginForm
