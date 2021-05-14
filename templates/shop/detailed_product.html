@@ -62,9 +62,12 @@
 
     function rateProduct(nr, pId) {
         let rating = 2 * Number(nr);
+        for (let i=1; i <= 5;i++) {
+            let btn = document.getElementById("star-" + i + "-" + pId).disabled = true;
+        }
         document.getElementById('rating-form-' + pId).action += "?rating=" + rating;
         document.getElementById('submit-rating-'+ pId).click();
     }
-    setRating("{{ product.id }}", "{{ product.rating_set.first.rating }}")
+    setRating("{{ product.id }}", "{{ rating }}")
 </script>
 {% endblock %}

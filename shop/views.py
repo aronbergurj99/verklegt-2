@@ -40,7 +40,7 @@ def get_product_by_id(request, id):
 
     return render(request, 'shop/detailed_product.html', {
         "product": product,
-        "rating": rating,
+        "rating": int(rating),
         "number_of_ratings": number_of_ratings
     })
 
