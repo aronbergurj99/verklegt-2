@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .forms import PaymentProcessForm
+from .forms import PaymentProcessForm, PaymentInfoForm, ContactInfoForm
 from .models import Orders
 
 
@@ -8,7 +8,7 @@ def contact_phase(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = PaymentProcessForm(request.POST)
+        form = ContactInfoForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             request.session['first_name'] = request.POST['first_name']
@@ -22,53 +22,54 @@ def contact_phase(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = PaymentProcessForm(request.session)
+        form = ContactInfoForm(request.session)
 
     return render(request, 'orders/contact_phase.html', {'form': form})
 
 def payment_phase(request):
     if request.method == 'POST':
-        form = PaymentProcessForm(request.POST)
+        form = PaymentInfoForm(request.POST)
+        print(form.errors)
         if form.is_valid():
             request.session['credit_card_number'] = request.POST['credit_card_number']
             request.session['credit_card_holder'] = request.POST['credit_card_holder']
             request.session['credit_card_expiry_month'] = request.POST['credit_card_expiry_month']
             request.session['credit_card_expiry_year'] = request.POST['credit_card_expiry_year']
             request.session['pvc'] = request.POST['pvc']
-        return redirect('review_phase')
+            return redirect('review_phase')
     else:
-       form = PaymentProcessForm(request.session)
+        form = PaymentInfoForm(request.session)
 
     return render(request, 'orders/payment_phase.html', {'form': form})
 
 def review_phase(request):
     if request.method == 'POST':
-        new_order = Orders.objects.create(
-            status = 'HELLO GUYS',
-            paid = True,
-            total_price = get_full_price(request.session['cart']),
-            first_name = request.session['first_name'],
-            last_name=request.session['last_name'],
-            country = request.session['country'],
-            city = request.session['city'],
-            street_name = request.session['street_name'],
-            house_number = request.session['house_number'],
-            postal_code = request.session['postal_code'],
-            credit_card_number = request.session['credit_card_number'],
-            credit_card_holder = request.session['credit_card_holder'],
-            credit_card_expiry_month = request.session['credit_card_expiry_month'],
-            credit_card_expiry_year = request.session['credit_card_expiry_year'],
-            pvc = request.session['pvc']
-        )
-        if request.user.is_authenticated:
-            new_order.user = request.user
-            new_order.save()
-        redirect('confirmation_phase')
-        for key in list(request.session.keys()):
-            if not key.startswith("_"):  # skip keys set by the django system
-                del request.session[key]
-    else:
         form = PaymentProcessForm(request.session)
+        if form.is_valid():
+            new_order = Orders.objects.create(
+                status = 'Sauce',
+                paid = True,
+                total_price = get_full_price(request.session['cart']),
+                first_name = request.session['first_name'],
+                last_name=request.session['last_name'],
+                country = request.session['country'],
+                city = request.session['city'],
+                street_name = request.session['street_name'],
+                house_number = request.session['house_number'],
+                postal_code = request.session['postal_code'],
+                credit_card_number = request.session['credit_card_number'],
+                credit_card_holder = request.session['credit_card_holder'],
+                credit_card_expiry_month = request.session['credit_card_expiry_month'],
+                credit_card_expiry_year = request.session['credit_card_expiry_year'],
+                pvc = request.session['pvc']
+            )
+            if request.user.is_authenticated:
+                new_order.user = request.user
+                new_order.save()
+            redirect('confirmation_phase')
+            for key in list(request.session.keys()):
+                if not key.startswith("_"):  # skip keys set by the django system
+                    del request.session[key]
 
     return render(request, 'orders/review_phase.html', context={
         'information': request.session
