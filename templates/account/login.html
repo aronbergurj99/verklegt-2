@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="sign-up">
-    <h1>Plz login you kind sir!!</h1>
+    <h1>Ship O'Cereal</h1>
     <form method="POST" action="{% url 'login' %}" class="form form-horizontal">
         {% csrf_token %}
 
@@ -19,6 +19,7 @@
         {% endfor %}
         <input type="submit" class="btn btn-primary" value="Login" />
     </form>
-</div>
+         <p>Don't have an account ? <a class="signup-link" href="{% url 'register' %}">Sign up</a></p>
+    </div>
 
 {% endblock%}

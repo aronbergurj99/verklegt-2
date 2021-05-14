@@ -100,24 +100,43 @@ register forms
 
 .sign-up {
     display: flex;
-    width: 100%;
+    width: 90%;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
     align-content: center;
     justify-content: center;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    margin: 50px;
+    /* margin-bottom: 50px;
+    margin-top: 50px; */
+    /* background-color: lightsteelblue; */
 }
 
-.sign-up input {
 
+.sign-up h1 {
+    margin-bottom: 20px;
+}
+
+.sign-up p {
+    padding: 20px;
 }
 
 .sign-up form > input {
     float: left;
 }
 
+.sign-up form {
+    border: 1px solid lightgray;
+    padding: 20px;
+
+}
+
 .sign-forms {
     margin: 1rem;
 }
+
+
+
+
+
+
