@@ -1,11 +1,11 @@
 /*Var bara að búa til fileinn*/
 
 .cop123-container {
-    display: grid;
-    margin-left: 10%;
-    margin-right: 10%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    align-items: flex-end;
+    justify-content: center;
 }
 .cop123-container-left {
     display: grid;
@@ -14,8 +14,19 @@
     padding-top: 20px;
 }
 .cop123-container-right {
-    padding: 5%;
+    padding: 20px;
+    overflow-y: scroll;
+
 }
+.payment-phase-container {
+    display: flex;
+    width: 100vw;
+    min-height: 80vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: space-around;
+}
+
 .cop123-heading {
     font-size: 1.7em;
 }
@@ -25,13 +36,15 @@
     margin-right: auto;
 }
 .cop123-phase-traversal {
-    display: grid;
-    grid-gap: 5%;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 5%;
-    margin-right: auto;
-    margin-left: auto;
-    grid-column: span 2;
+    display: flex;
+    margin-top: 40px;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cop123-phase-traversal a{
+    margin: 20px;
 }
 .cop123-product {
     display: grid;

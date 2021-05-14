@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <form method="POST">
         {% csrf_token %}
+    <div class="payment-phase-container">
+        <div class="cop123-phase-traversal">
+                <a class="btn btn-info" href="{% url 'contact_phase' %}">Contact information</a>
+                <a class="btn btn-primary" href="{% url 'payment_phase' %}">Payment information </a>
+                <a class="btn btn-info" href="{% url 'review_phase' %}">Review information</a>
+        </div>
         <div class="cop123-container">
             <div class="cop123-container-left">
+                <form method="POST" >
                 <h1 class="cop123-heading">Please enter your contact information</h1>
                 {{ form|crispy }}
-                <input type="submit" class="cop123-submit-btn" value="Submit" />
+                <div style="display:flex; justify-content: center; margin-top: 20px">
+                    <input type="submit" class="btn btn-success" value="Submit" />
+                </div>
+
+                </form>
             </div>
             <div class="cop123-container-right">
                 <h1 class="cop123-heading">Cart information</h1>
@@ -24,11 +34,9 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="cop123-phase-traversal">
-                <a class="btn btn-info" href="{% url 'contact_phase' %}">Contact information</a>
-                <a class="btn btn-info" href="{% url 'payment_phase' %}">Payment information </a>
-                <a class="btn btn-info" href="{% url 'review_phase' %}">Review information</a>
-            </div>
+
         </div>
-    </form>
+    </div>
+
+
 {% endblock %}

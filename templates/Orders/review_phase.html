@@ -1,14 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="cop123-container">
+
+    <div class="payment-phase-container">
+        <div class="cop123-phase-traversal">
+        <a class="btn btn-info " href="{% url 'contact_phase' %}">Contact information</a>
+        <a class="btn btn-info" href="{% url 'payment_phase' %}">Payment information </a>
+        <a class="btn btn-primary" href="{% url 'review_phase' %}">Review information</a>
+        </div>
+
+        <div class="cop123-container">
         <div class="cop123-container-left">
             <h1 class="cop123-heading">Press submit if information is correct</h1>
             {% for key, value in information.items %}
                 <p>{{ key }}: <span>{{ value }}</span></p>
             {% endfor %}
-            <form method="POST">
+            <form method="POST" style="display:flex; justify-content: center">
                 {% csrf_token %}
-                <input type="submit" class="cop123-submit-btn" value="Confirm?"/>
+                <input type="submit" class="btn btn-success" value="Submit"/>
             </form>
         </div>
         <div class="cop123-container-right">
@@ -26,10 +34,7 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="cop123-phase-traversal">
-            <a class="btn btn-info" href="{% url 'contact_phase' %}">Contact information</a>
-            <a class="btn btn-info" href="{% url 'payment_phase' %}">Payment information </a>
-            <a class="btn btn-info" href="{% url 'review_phase' %}">Review information</a>
-        </div>
     </div>
+</div>
+
 {% endblock %}
