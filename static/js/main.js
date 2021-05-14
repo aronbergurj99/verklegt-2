@@ -2,25 +2,11 @@
 var products;
 let searchResults = document.getElementById("search-result");
 let searchInput = document.getElementById("search");
-let filteredArr = [];
-let searchArr;
-let input = document.getElementById("search");
+let filteredArr = []
 
 //small cart lenght on navbar
 let cartLen = 0;
 
-//index
-var newHtml;
-
-//listen to the enter key on search bar
-input.addEventListener("keyup", function(event) {
-  if (event.key === 'Enter') {
-    event.preventDefault();
-    let product = filteredArr[0].id;
-    document.getElementById('search-product-' + product).click();
-
-  }
-});
 
 //function to retrieve all products when searching
 function getProducts() {
@@ -40,31 +26,23 @@ function getProducts() {
 
 function createSearchResult(product) {
   var href = document.createElement("a");
-  href.href = '/products/' + product.id;
-  href.id = 'search-product-' + product.id;
-  href.setAttribute("onclick", "addToSearchHistory(" + product.id + ")");
+  href.href = '/products/' + product.id
 
   var container = document.createElement("div");
   container.className = "single-search-result";
-
-  var c = document.createElement("div")
-  c.style="display: flex; flex-directino: row; align-items: center;"
 
   var name = document.createElement("p");
   name.innerHTML = product.name;
 
   var productPrice = document.createElement("p");
-  productPrice.innerHTML = "Price: " + product.price + " Kr";
+  productPrice.innerHTML = "Price: " + product.price;
 
   var productImage = document.createElement("img");
   productImage.setAttribute("src", product.image)
   productImage.className = "x-small-images"
-
-  c.appendChild(productImage);
-  c.appendChild(name);
-
-  container.appendChild(c);
+  container.appendChild(name);
   container.appendChild(productPrice);
+  container.appendChild(productImage);
   href.appendChild(container);
 
   searchResults.appendChild(href);
@@ -72,73 +50,19 @@ function createSearchResult(product) {
 
 function search() {
   if (!products) {
-    //json products for live seearch!!
-    setTimeout(() => {}, 500);
-  }
-  if (searchArr.length === 0) {
-    setTimeout(() => {}, 500);
+    getProducts()
   }
   searchResults.innerHTML = ""
   filteredArr = products.filter(info => info['name'].toLowerCase().includes(searchInput.value.toLowerCase()));
 
-  //only show the top 3 most recent searches
-  let searchHistorySize = ((searchArr.length <=3) ? searchArr.length : 3);
-  //only show the top 4 most likely search results
-  let searchSize = ((filteredArr.length <= 4) ? filteredArr.length : 4);
-  for (let i = 0; i < searchSize; i++) {
+  for (let i = 0; i < filteredArr.length; i++) {
     createSearchResult(filteredArr[i]);
   }
-  let searchHistorySeperator = document.createElement('div');
-  searchHistorySeperator.innerHTML= `<p>Most recent searches:</p>`;
-  searchHistorySeperator.setAttribute('class', "search-bar-history");
-  //search history!
-  searchResults.appendChild(searchHistorySeperator)
-  for (let i = 0; i < searchHistorySize; i++) {
-    createSearchResult(searchArr[i]);
-  }
 }
 
-function addToSearchHistory(product_id) {
-  //TODO: implement add search history with post request
-  $(document).ready(function() {
-    $.ajax({
-      type: "POST",
-      url: "/accounts/search-history/" + product_id,
-      data: {
-        csrfmiddlewaretoken: csrfToken
-      },
-      success: function(resp) {
-        console.log(resp)
-      },
-      error: function (xhr, status, error) {
-        console.log(error);
-      }
-    })
-  });
+function updateCartNavIcon() {
 
 }
-
-function getSearchHistory() {
-  $(document).ready(function() {
-    $.ajax({
-      type: "GET",
-      url: "/accounts/search-history",
-      data: {
-        csrfmiddlewaretoken: csrfToken
-      },
-      success: function(resp) {
-        searchArr = resp.data;
-        console.log(searchArr)
-      },
-      error: function (xhr, status, error) {
-        console.log(error);
-      }
-    })
-  });
-}
-
-
-
 function getCartLen() {
 
   var xhttp = new XMLHttpRequest();
@@ -154,13 +78,10 @@ function getCartLen() {
 
 function changeCartIconLen() {
   let lenValue = document.getElementById('cart-len-display');
-  if (cartLen != 0) {
-    lenValue.style.display = "inline-block";
+  console.log(lenValue.innerText)
+  if (Number(lenValue.innerText) !== cartLen) {
     lenValue.innerText = cartLen;
-  } else {
-    lenValue.style.display = "none";
   }
-
 };
 
 var order = 'name';
@@ -175,8 +96,23 @@ $(document).ready(function() {
     $.ajax( {
       url: '/?type_filter=' + type + '&order=' + order,
       success: function(resp) {
-        createIndexHtml(resp)
+        var newHtml = resp.data.map(d => {
+          return `
+<div class="small-product">
+    <a href="/products/${d.id}">
+        <img class="small-image" src="${d.image}"/>
+    </a>
+    <div class="small-product-text">
+        <h1>${d.name}</h1>
+        <p><b>Price: ${d.price}</b></p>
+    </div>
 
+    <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn" onclick="addToCart(${d.id}, true, false)">add to cart<i class="fas fa-cart-plus"></i></button>
+
+</div>
+`
+
+        });
         $('.products-index').html(newHtml.join(''));
       },
       error: function(xhr, status, error) {
@@ -192,7 +128,22 @@ $(document).ready(function() {
     $.ajax( {
       url: '/?type_filter=' + type + '&order=' + order,
       success: function(resp) {
-        createIndexHtml(resp)
+        var newHtml = resp.data.map(d => {
+          return `
+<div class="small-product">
+    <a href="/products/${d.id}">
+        <img class="small-image" src="${d.image}"/>
+    </a>
+    <div class="small-product-text">
+        <h1>${d.name}</h1>
+        <p><b>Price: ${d.price}</b></p>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn" onclick="addToCart(${d.id}, true, false)">add to cart<i class="fas fa-cart-plus"></i></button>
+   
+</div>
+`
+
+        });
         $('.products-index').html(newHtml.join(''));
       },
       error: function(xhr, status, error) {
@@ -203,22 +154,6 @@ $(document).ready(function() {
 
 
 });
-
-function createIndexHtml(resp) {
-  newHtml = resp.data.map(d => {
-    return `
-<div class="small-product">
-    <a href="/products/${d.id}">
-        <img class="small-image" src="${d.image}"/>
-    </a>
-    <div class="small-product-text">
-        <h1>${d.name}</h1>
-        <p><b>Price: ${d.price}</b></p>
-    </div>
-    <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn" onclick="addToCart(${d.id}, true, false)">add to cart<i class="fas fa-cart-plus"></i></button> 
-</div>
-`
-})};
 
 function addToCart(id, add, incart) {
   var url;
@@ -247,6 +182,7 @@ function addToCart(id, add, incart) {
           let cartItem = document.getElementById("cart-item-" + id);
           let totalPrice = document.getElementById("total-price");
           totalPrice.innerText = resp.data['total-price']
+          console.log()
           cartInput.value = Number(cartInput.value) + increase;
 
           if (cartInput.value ==0) {
@@ -260,13 +196,14 @@ function addToCart(id, add, incart) {
     });
   });
 };
-//function to change picture in detailed view
-function changePicture(url, product_id, el) {
-  let bigImage = document.getElementById('big-image-' + product_id);
-  bigImage.setAttribute("src", url);
 
-}
-
-getSearchHistory()
-getProducts()
 getCartLen()
+
+function getHamburger() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
