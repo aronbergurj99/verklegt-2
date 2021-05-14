@@ -74,6 +74,10 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p>{{ order }}</p>
+                                            {% for product in order.ordered_product_set.all %}
+                                                {{ product }}
+
+                                            {% endfor %}
                                         </div>
                                     </div>
                                   {%  endfor %}

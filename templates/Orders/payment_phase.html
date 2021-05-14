@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-        {% csrf_token %}
+
     <div class="payment-phase-container">
         <div class="cop123-phase-traversal">
                 <a class="btn btn-info" href="{% url 'contact_phase' %}">Contact information</a>
@@ -10,8 +10,9 @@
         </div>
         <div class="cop123-container">
             <div class="cop123-container-left">
-                <form method="POST" >
                 <h1 class="cop123-heading">Please enter your contact information</h1>
+                <form method="POST" >
+                {% csrf_token %}
                 {{ form|crispy }}
                 <div style="display:flex; justify-content: center; margin: 20px">
                     <input type="submit" class="btn btn-success" value="Submit" />

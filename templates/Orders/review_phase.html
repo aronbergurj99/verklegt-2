@@ -14,7 +14,7 @@
             {% for key, value in information.items %}
                 <p>{{ key }}: <span>{{ value }}</span></p>
             {% endfor %}
-            <form method="POST" style="display:flex; justify-content: center; margin: 20px">
+            <form method="POST" style="display:flex; justify-content: center; margin: 30px">
                 {% csrf_token %}
                 <input type="submit" class="btn btn-success" value="Submit"/>
             </form>
