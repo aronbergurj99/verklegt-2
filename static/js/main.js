@@ -82,6 +82,128 @@ function changeCartIconLen() {
   if (Number(lenValue.innerText) !== cartLen) {
     lenValue.innerText = cartLen;
   }
-}
+};
+
+var order = 'name';
+var type = '';
+
+$(document).ready(function() {
+
+  $('#filter').on('change', function (e){
+    e.preventDefault();
+    type = $('#filter').val();
+    order = $('#order').val();
+    $.ajax( {
+      url: '/?type_filter=' + type + '&order=' + order,
+      success: function(resp) {
+        var newHtml = resp.data.map(d => {
+          return `
+<div class="small-product">
+    <a href="/products/${d.id}">
+        <img class="small-image" src="${d.image}"/>
+    </a>
+    <div class="small-product-text">
+        <h1>${d.name}</h1>
+        <p><b>Price: ${d.price}</b></p>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn" onclick="addToCart(${d.id}, true, false)">add to cart<i class="fas fa-cart-plus"></i></button>
+
+</div>
+`
+
+        });
+        $('.products-index').html(newHtml.join(''));
+      },
+      error: function(xhr, status, error) {
+        console.log(error)
+      }
+    })
+  });
+
+    $('#order').on('change', function (e){
+    e.preventDefault();
+    type = $('#filter').val();
+    order = $('#order').val();
+    $.ajax( {
+      url: '/?type_filter=' + type + '&order=' + order,
+      success: function(resp) {
+        var newHtml = resp.data.map(d => {
+          return `
+<div class="small-product">
+    <a href="/products/${d.id}">
+        <img class="small-image" src="${d.image}"/>
+    </a>
+    <div class="small-product-text">
+        <h1>${d.name}</h1>
+        <p><b>Price: ${d.price}</b></p>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm add-to-cart-btn" onclick="addToCart(${d.id}, true, false)">add to cart<i class="fas fa-cart-plus"></i></button>
+   
+</div>
+`
+
+        });
+        $('.products-index').html(newHtml.join(''));
+      },
+      error: function(xhr, status, error) {
+        console.log(error)
+      }
+    })
+  });
+
+
+});
+
+function addToCart(id, add, incart) {
+  var url;
+  var increase;
+  if (add == true) {
+    url = "/cart/add-to-cart/" + id
+    increase = 1;
+  } else {
+    url = "/cart/remove-from-cart/" + id
+    increase = -1;
+  }
+
+  $(document).ready(function () {
+    $.ajax( {
+      type: "POST",
+      url: url,
+      data: {
+        csrfmiddlewaretoken: csrfToken
+      },
+      success: function(resp) {
+        cartLen = resp.data['len']
+        changeCartIconLen()
+        if (incart) {
+          // if the add to cart button is the in cart html then we need to update a few things.
+          let cartInput = document.getElementById("cart-input-" + id);
+          let cartItem = document.getElementById("cart-item-" + id);
+          let totalPrice = document.getElementById("total-price");
+          totalPrice.innerText = resp.data['total-price']
+          console.log()
+          cartInput.value = Number(cartInput.value) + increase;
+
+          if (cartInput.value ==0) {
+            cartItem.remove();
+          }
+        }
+      },
+      error: function (xhr, status, error) {
+        console.log(error)
+      }
+    });
+  });
+};
 
 getCartLen()
+
+function getHamburger() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}

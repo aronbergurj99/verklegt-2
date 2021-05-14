@@ -1,0 +1,73 @@
+.hamburger, .fas fa-bars {
+    display: none;
+}
+
+@media only screen and (max-width: 717px) {
+    .search {
+        display: inline;
+    }
+
+    .x-small-images {
+        display: none;
+    }
+
+    .nav-link {
+        display: none;
+    }
+
+    .cart-nav {
+        display: inline;
+    }
+
+    /* Style for the hamburger en the hidden list */
+    .hamburger,.fas fa-bars {
+        display: block;
+        color: white;
+        font-size: 35px;
+    }
+
+    .topnav {
+        overflow: hidden;
+        position: relative;
+        /* background-color: #173E42; */
+    }
+
+    /* Hide the links inside the navigation menu (except for logo/home) */
+    .myLinks {
+        display: none;
+    }
+
+    /* Style navigation menu links */
+    .topnav a {
+        color: black;
+      /*padding: 14px 16px; */
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+    }
+
+    /* Style the hamburger menu */
+    .topnav a.icon {
+        color: white;
+        /*background: #173E42; */
+        display: block;
+        position: relative;
+      /*position: absolute;
+      right: 0;
+      top: 0; */
+    }
+
+    /* Add a grey background color on mouse-over */
+    .topnav a:hover {
+      /*background-color: #ddd; */
+        color: lightgray;
+    }
+
+    /* Style the active link (or home/logo) */
+     /* .active {
+      background-color: #04AA6D;
+      color: white;
+    } */
+
+}
+

@@ -1,19 +1,15 @@
-<div class="cart-item">
+<div class="cart-item" id="cart-item-{{ product.id }}">
     <img src="{{ product.productimage_set.first.image.url }}">
     <p>{{ product.name }}</p>
-    <p>{{ product.price }}</p>
+    <p>{{ product.price }} Kr</p>
 
-    <form action="{% url 'add-to-cart' product.id %}" method="post">
-        {% csrf_token %}
-        <button type="submit">+</button>
-        <input type="hidden" name="next" value="{{ request.path }}">
-    </form>
+    <div class="quantity-container">
+    <button type="submit" onclick="addToCart({{ product.id }}, true, true)"><i class="fas fa-plus"></i></button>
 
-    <input value="{{ quantity }}">
 
-    <form action="{% url 'remove-from-cart' product.id %}" method="post">
-        {% csrf_token %}
-        <button type="submit">-</button>
-        <input type="hidden" name="next" value="{{ request.path }}">
-    </form>
+    <input value="{{ quantity }}" id="cart-input-{{ product.id }}">
+
+    <button type="submit"><i class="fas fa-minus" onclick="addToCart({{ product.id }}, false, true)"></i></button>
+    </div>
+
 </div>

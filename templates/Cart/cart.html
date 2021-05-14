@@ -16,11 +16,25 @@
             {% endfor %}
         </div>
         <div class="cart-checkout">
-            <p>Checkout total: {{ total_price }}</p>
-            <button class="btn btn-lg btn-primary">Browse more</button>
-            <form action="{% url 'contact_phase' %}" method="GET">
-                <button type="submit" class="btn btn-lg btn-primary">Checkout</button>
+            <div class="checkout-group">
+                <form action="{% url 'clear-cart' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-lg btn-danger">Clear cart</button>
             </form>
+
+
+            <a href="/">
+                <button class="btn btn-lg btn-primary">Browse more</button>
+            </a>
+            </div>
+            <div class="checkout-group">
+                <div>Checkout total: <div id="total-price">{{ total_price }} Kr</div></div>
+            <form action="{% url 'contact_phase' %}" method="GET">
+                <button type="submit" class="btn btn-lg btn-success">Checkout</button>
+            </form>
+            </div>
+
+
 
 
         </div>

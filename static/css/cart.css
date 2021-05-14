@@ -1,5 +1,6 @@
 .cart-container {
     width: 100vw;
+    height: 90vh;
 }
 
 .cart-items {
@@ -33,6 +34,11 @@
 }
 
 
+.quantity-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
 .quantity-container button,
 .quantity-container input {
     width: 2rem;
@@ -41,6 +47,8 @@
     text-align: center ;
 
 }
+
+
 .quantity-container button {
     background-color: transparent;
 }
@@ -76,4 +84,24 @@ p#cartheader {
     background-color: lightgray;
 
 
+}
+
+.checkout-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.checkout-group > * {
+    margin: 20px;
+}
+
+@media only screen and (max-width: 717px) {
+    .cart-checkout {
+        flex-direction: column;
+    }
+    .checkout-group {
+        width: 80%;
+        justify-content: space-between;
+    }
 }

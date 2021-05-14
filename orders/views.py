@@ -46,7 +46,7 @@ def review_phase(request):
         new_order = Orders.objects.create(
             status = 'HELLO GUYS',
             paid = True,
-            total_price = 8.99,
+            total_price = get_full_price(request.session['cart']),
             first_name = request.session['first_name'],
             last_name=request.session['last_name'],
             country = request.session['country'],
@@ -78,8 +78,8 @@ def confirmation(request):
 
     return render(request, 'orders/confirmation.html')
 
-# Create your views here.
-def order_index(request):
-    return render(request, 'orders/orders.html')
-
-
+def get_full_price(cart):
+    total_price = 0
+    for key, value in cart.items():
+        total_price += value['price']
+    return round(total_price, 2)

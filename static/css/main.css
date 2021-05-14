@@ -1,9 +1,17 @@
+/* Hide scrollbar for Chrome, Safari and Opera */
+* ::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 body {
     font-family: Montserrat;
-
     height: 100vh;
-
 }
 
 .main-body {
@@ -45,7 +53,7 @@ body {
     min-height: 0px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
-    z-index: 1;
+    z-index: 10;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 
@@ -71,9 +79,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px;
-  width: 300px;
-  height: 400px;
+  margin: 20px; /*var 30*/
+  width: 250px; /*var 300*/
+  height: 350px; /* var 400*/
   background: white;
     border: solid 1px lightgray ;
     border-radius: 10px;
@@ -84,9 +92,9 @@ body {
 .small-product:hover {
   border-radius: 5%;
   z-index: 10;
-  box-shadow: 0px 0px 100px 30px yellow,
-             0 0px 70px 50px blue,
-             0 0px 45px 80px red;
+  box-shadow: 0px 0px 5px 5px yellow,
+             0 0px 10px 10px blue,
+             0 0px 12px 14px red;
 }
 .small-product h1 {
     font-size: 1.5rem;
@@ -98,6 +106,8 @@ body {
 
 .small-product p {
     font-size: 1rem;
+    padding-left: 10px;
+    padding-bottom: 20px;
 
 }
 
@@ -108,19 +118,43 @@ body {
 }
 .contents {
     /* padding-top: 20px; */
-    display: inline-block;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
     min-height: 90vh;
     overflow-y: auto;
 
 }
+.products-index {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.type-filter {
+    width: auto;
+    margin-left: 10px;
+    margin-right: 20px;
 
+}
+
+#filters {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left:20px;
+    margin-top: 20px;
+    width: 100%;
+}
 
 /*
 this is all the detailed product stuff
  */
+.one-or-more-images{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    padding-bottom: 30px;
+    padding-right: 30px;
+}
 
 .big-image {
     flex-direction: row;
@@ -132,11 +166,11 @@ this is all the detailed product stuff
 
 .detailed-product-info {
     flex-direction: column;
-    float: left;
     padding-top: 30px;
     line-height: 300%;
     width: 500px;
     word-wrap: break-word;
+    margin-right: auto
 }
 
 a {
@@ -185,7 +219,7 @@ this is for the search results
 
 .circle {
     position: absolute;
-    top: -4px;
+    top: 0px;
     right: 0px;
     z-index: 10;
     height: 25px;
@@ -199,4 +233,41 @@ this is for the search results
 
 .cart-nav {
     position: relative;
+
 }
+.d-flex {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+}
+
+/* ALL BEEN MOVE TO NAVBAR.HTML*/
+/* .hamburger, .fas fa-bars {
+    display: none;
+}
+
+@media only screen and (max-width: 717px) {
+    .hamburger,.fas fa-bars {
+        display: block;
+        color: white;
+        font-size: 35px;
+    }
+}
+
+    .search {
+        display: inline;
+    }
+
+    .x-small-images {
+        display: none;
+    }
+
+    .nav-link {
+        display: none;
+    }
+
+    .cart-nav {
+        display: inline;
+    }
+} */

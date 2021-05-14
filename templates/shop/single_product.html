@@ -1,18 +1,13 @@
+
 <div class="small-product">
     <a href="{% url 'product-details' product.id %}">
         <img class="small-image" src="{{ product.productimage_set.first.image.url}}"/>
     </a>
     <div class="small-product-text">
         <h1>{{ product.name }}</h1>
-        <p><b>Price: {{ product.price }}</b></p>
+        <p><b>Price: {{ product.price }} Kr</b></p>
     </div>
 
-    {% if product.rating_set.first.rating %}
-        <p>Rating: {{ product.rating_set.first.rating}} ({{ product.rating_set.first.number_of_ratings }} ratings)</p>
-    {% else %}
-        <p>Rating: no ratings yet</p>
-    {% endif%}
-    {% include 'cart/add-to-cart.html' %}
+    {% include 'cart/add-to-cart.html' with product=product%}
 
-</button>
 </div>
