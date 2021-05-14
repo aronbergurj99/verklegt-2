@@ -1,8 +1,23 @@
 <nav class="navbar navbar-light">
     <div class="container-fluid">
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
+        <div class="topnav hamburger">
+            <a href="#home" class="active"></a>
+            <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+            <a href="javascript:void(0);" class="icon" onclick="getHamburger()">
+                <i class="fa fa-bars"></i>
+            </a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="myLinks">
+                <a class="nav-link" href="/">Home</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+            </div>
         </div>
+        <!--<div class="hamburger">
+            <a href="javascript:void(0);" class="icon" onclick="getHamburger()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div> -->
         <a class="nav-link" href="/">Home</a>
         <div class="dropdown">
             <input id="search" class="form-control me-2 search" type="search" autocomplete="off" placeholder="Search" aria-label="Search" onkeyup="search()" onmouseover="getProducts()">

@@ -242,7 +242,8 @@ this is for the search results
     height: 100%;
 }
 
-.hamburger, .fas fa-bars {
+/* ALL BEEN MOVE TO NAVBAR.HTML*/
+/* .hamburger, .fas fa-bars {
     display: none;
 }
 
@@ -252,6 +253,7 @@ this is for the search results
         color: white;
         font-size: 35px;
     }
+}
 
     .search {
         display: inline;
@@ -268,4 +270,4 @@ this is for the search results
     .cart-nav {
         display: inline;
     }
-}
+} */
