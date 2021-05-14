@@ -18,26 +18,26 @@
             <h1>{{ product.name }}</h1>
 
 
-            {% if product.rating_set.first.rating %}
-                <p>rating: {{ product.rating_set.first.rating}} ({{ product.rating_set.first.number_of_ratings }} ratings)</p>
+            {% if rating %}
+                <p>rating: {{ rating }} (based on {{ number_of_ratings }} user ratings)</p>
             {% else %}
                 <p>rating: no ratings yet</p>
             {% endif %}
 
             <span id="rating-{{ product.id }}">
-                <form method="POST" action="">
+                <form id="rating-form-{{ product.id }}" method="POST" action="{% url 'rate-product' product.id %}">
                     {% csrf_token %}
-                    <input id="rating-input" style="display: none;" value="">
-                    <button id="star-1-{{ product.id }}" onclick="rateProduct(1)" style="background: transparent; border: none; color: orange; width: auto; margin: 0px"><i class="fas fa-star"></i></button>
-                    <button id="star-2-{{ product.id }}" onclick="rateProduct(2)" style="background: transparent; border: none; color: orange; width: auto; margin: 0px"><i class="fas fa-star"></i></button>
-                    <button id="star-3-{{ product.id }}" onclick="rateProduct(3)" style="background: transparent; border: none; color: orange; width: auto; margin: 0px"><i class="fas fa-star"></i></button>
-                    <button id="star-4-{{ product.id }}" onclick="rateProduct(4)" style="background: transparent; border: none; color: orange; width: auto; margin: 0px"><i class="fas fa-star"></i></button>
-                    <button id="star-5-{{ product.id }}" onclick="rateProduct(5)" style="background: transparent; border: none; color: orange; width: auto; margin: 0px"><i class="fas fa-star"></i></button>
-
-                    <button id="submit-rating" type="submit" style="display: none"></button>
+                    <button id="star-1-{{ product.id }}" onclick="rateProduct(1,'{{ product.id }}')" style="background: transparent; border: none; color: orange; width: auto; margin: 0px"><i class="fas fa-star"></i></button>
+                    <button id="star-2-{{ product.id }}" onclick="rateProduct(2,'{{ product.id }}')" style="background: transparent; border: none; color: orange; width: auto; margin: 0px"><i class="fas fa-star"></i></button>
+                    <button id="star-3-{{ product.id }}" onclick="rateProduct(3,'{{ product.id }}')" style="background: transparent; border: none; color: orange; width: auto; margin: 0px"><i class="fas fa-star"></i></button>
+                    <button id="star-4-{{ product.id }}" onclick="rateProduct(4,'{{ product.id }}')" style="background: transparent; border: none; color: orange; width: auto; margin: 0px"><i class="fas fa-star"></i></button>
+                    <button id="star-5-{{ product.id }}" onclick="rateProduct(5,'{{ product.id }}')" style="background: transparent; border: none; color: orange; width: auto; margin: 0px"><i class="fas fa-star"></i></button>
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button id="submit-rating-{{ product.id }}" type="submit" style="display: none"></button>
 
                 </form>
             </span>
+
             <b>Type: {{ product.type.type}}</b>
             <h2>Description:</h2>
             <p>{{ product.description }}</p>
@@ -60,10 +60,10 @@
         }
     }
 
-    function rateProduct(nr) {
-        let rating = 2 * nr;
-        document.getElementById('rating-input').value = rating;
-        document.getElementById('submit-rating').click();
+    function rateProduct(nr, pId) {
+        let rating = 2 * Number(nr);
+        document.getElementById('rating-form-' + pId).action += "?rating=" + rating;
+        document.getElementById('submit-rating-'+ pId).click();
     }
     setRating("{{ product.id }}", "{{ product.rating_set.first.rating }}")
 </script>

@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Product, Type
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Product, Type, Rating
 from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 
 
 # Create your views here.
@@ -29,8 +30,18 @@ def index(request):
 
 def get_product_by_id(request, id):
     # Gets a single product from database from id, return 404 or the product.
+    product = get_object_or_404(Product, pk=id)
+    rating = 0
+    number_of_ratings = 0
+    if product.rating_set.first():
+        rating = product.rating_set.first().get_total_rating(id)
+        number_of_ratings = product.rating_set.first().get_number_of_rating(id)
+
+
     return render(request, 'shop/detailed_product.html', {
-        "product": get_object_or_404(Product, pk=id)
+        "product": product,
+        "rating": rating,
+        "number_of_ratings": number_of_ratings
     })
 
 
@@ -44,3 +55,25 @@ def search(request):
     } for x in Product.objects.all()]
 
     return JsonResponse({'data': products}, safe=False)
+
+
+
+@require_POST
+def rate_product(request, product_id):
+    print(request.headers['Content-type'])
+    next = request.POST.get('next', '/')
+    if request.user.is_authenticated:
+        if Product.objects.get(id=product_id).rating_set.all().filter(user=request.user).exists():
+            if 'rating' in request.GET:
+                rating = request.GET['rating']
+                Product.objects.get(id=product_id).rating_set.all().filter(user=request.user).update(rating=rating)
+
+            return redirect(next)
+        else:
+            if 'rating' in request.GET:
+                rating = request.GET['rating']
+                r = Rating(user=request.user, product=Product.objects.get(id=product_id), rating=rating)
+                r.save()
+            return redirect(next)
+    else:
+        return redirect('/accounts/login')
