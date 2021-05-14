@@ -25,7 +25,7 @@ class Orders(models.Model):
 
 
     def __str__(self):
-        return '{}'.format(self.date)
+        return f'Date: {self.date} Price:{self.total_price}'
 
 
 class Ordered_product(models.Model):
