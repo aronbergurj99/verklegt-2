@@ -71,7 +71,6 @@ def review_phase(request):
             if request.user.is_authenticated:
                 new_order.user = request.user
                 new_order.save()
-            redirect('confirmation_phase')
             for key in list(request.session.keys()):
                 if not key.startswith("_") and not key == 'search-history':  # skip keys set by the django system
                     del request.session[key]
