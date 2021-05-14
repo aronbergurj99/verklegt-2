@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -30,11 +31,20 @@ class ProductImage(models.Model):
 
 
 class Rating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    rating = models.DecimalField(decimal_places=2, max_digits=4)
-    number_of_ratings = models.PositiveIntegerField()
+    rating = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return '{}'.format(self.product.name)
 
+    def get_total_rating(self, product_id):
+        product = Product.objects.get(id=product_id)
+        rating = sum([item.rating for item in product.rating_set.all()]) / self.get_number_of_rating(product_id)
+        return rating
 
+
+    def get_number_of_rating(self, product_id):
+        product = Product.objects.get(id=product_id)
+        ratings = product.rating_set.all()
+        return len(ratings)
