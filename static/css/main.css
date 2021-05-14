@@ -35,7 +35,10 @@ body {
     /* background-color: lightslategrey; */
     height: 15vh;
     text-align: center;
+    display: flex;
+    justify-content: space-around;
     color: white;
+    padding-top: 20px;
 }
 .search {
     height: 90%;
