@@ -26,12 +26,3 @@ class Orders(models.Model):
 
     def __str__(self):
         return f'Date: {self.date.date()}, Price: {self.total_price}'
-
-
-class Ordered_product(models.Model):
-    order = models.ForeignKey(Orders, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-
-    def __str__(self):
-        return '{}'.format(self.order)
