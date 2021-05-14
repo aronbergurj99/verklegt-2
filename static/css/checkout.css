@@ -1,1 +1,44 @@
 /*Var bara að búa til fileinn*/
+
+.cop123-container {
+    display: grid;
+    margin-left: 10%;
+    margin-right: 10%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+.cop123-container-left {
+    display: grid;
+    grid-row-gap: 1%;
+    padding: 10px;
+    padding-top: 20px;
+}
+.cop123-container-right {
+    padding: 5%;
+}
+.cop123-heading {
+    font-size: 1.7em;
+}
+.cop123-submit-btn {
+    display:flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cop123-phase-traversal {
+    display: grid;
+    grid-gap: 5%;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.cop123-product {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    border-bottom: #aaaaaa 2px solid;
+}
+.cop123-product-image {
+    width: 100px;
+    height: auto;
+}
+.cop123-product-info {
+    margin-bottom: auto;
+    margin-top: auto;
+}

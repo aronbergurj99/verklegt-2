@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'cart',
     'orders',
     'account',
-    'django_countries'
+    'django_countries',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
