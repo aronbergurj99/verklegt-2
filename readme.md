@@ -2,7 +2,7 @@
 https://github.com/aronbj20/verklegt-2
 
 ## Install all necessary packages:
-* cd to project file and run "pip install -r requirements.txt"
+* cd to project directory and run "pip install -r requirements.txt"
 
 ## Employee login
 Employee(group) account can change, add and delete product info or types on the admin page: www.localhost:8000/admin
