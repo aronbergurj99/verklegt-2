@@ -1,0 +1,39 @@
+.hamburger {
+    display: none;
+}
+.hamburger a {
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+}
+
+#myLinks {
+    display: none;
+    background-color: lightgray;
+    position: absolute;
+    top: 10vh;
+    left: 0px;
+    width: 100%;
+    flex-direction: column;
+    z-index: 12;
+    padding: 20px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#myLinks a {
+    text-decoration: none;
+    color: black;
+    font-size: 26px;
+    margin: 20px;
+
+}
+@media only screen and (max-width: 846px) {
+    .hamburger {
+        display: inline;
+    }
+}
+@media only screen and (min-width: 846px) {
+    #myLinks {
+        display: none;
+    }
+}

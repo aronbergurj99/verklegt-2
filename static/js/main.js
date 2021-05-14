@@ -267,6 +267,15 @@ function changePicture(url, product_id, el) {
 
 }
 
+function openHamburger() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "flex") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "flex";
+  }
+}
+
 getSearchHistory()
 getProducts()
 getCartLen()

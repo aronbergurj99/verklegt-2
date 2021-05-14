@@ -275,16 +275,10 @@ this is for the search results
     height: 100%;
 }
 
-.hamburger, .fas fa-bars {
-    display: none;
-}
 
-@media only screen and (max-width: 717px) {
-    .hamburger,.fas fa-bars {
-        display: block;
-        color: white;
-        font-size: 35px;
-    }
+
+@media only screen and (max-width: 846px) {
+
 
     .search {
         display: inline;
