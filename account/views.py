@@ -5,26 +5,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from account.forms import SignUpForm, ChangeInfoForm, LoginForm, ChangeProfilePicture
 from account.models import ProfilePicture, SearchHistory
 from shop.models import Product
+from orders.models import Orders
 from django.views.decorators.http import require_POST
 from account.search_history import SearchHistorySession
-
-
-account = {
-    'name': 'Jón Jónsson',
-    'email': 'jon@gmail.com',
-    'country': 'Iceland',
-    'town': 'Akranes',
-    'zip': '300',
-    'Street': 'Melteigur 7'
-}
-
-orders = [
-    'Order #1',
-    'Order #2',
-    'Order #3',
-    'Order #4',
-    'Order #5'
-]
 
 
 # Create your views here.
@@ -53,7 +36,7 @@ def profile(request):
     return render(request, 'account/account.html', context={
         'account': request.user,
         'search_history': search_history,
-        'orders': orders,
+        'orders': Orders.objects.filter(user=request.user),
         'profile_picture': profile_picture,
         'image_root': '/media/',
         'form': ChangeProfilePicture()
@@ -83,7 +66,6 @@ def change_info(request):
     return render(request, 'account/change_info.html', {
         'form': ChangeInfoForm(instance=request.user)
     })
-
 
 class UserLoginView(LoginView):
     LoginView.form_class = LoginForm

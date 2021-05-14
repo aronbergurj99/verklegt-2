@@ -1,5 +1,41 @@
-<form action="/your-name/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+{% extends 'base.html' %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="container">
+            <div>
+                <label>{{ form.first_name.label_tag }}</label>
+                {{ form.first_name }} {{ form.value }}
+            </div>
+            <div>
+                <label>{{ form.last_name.label_tag }}</label>
+                {{ form.last_name }}
+            </div>
+            <div>
+                <label>{{ form.country.label_tag }}</label>
+                {{ form.country }}
+            </div>
+            <div>
+                <label>{{ form.city.label_tag }}</label>
+                {{ form.city }}
+            </div>
+            <div>
+                <label>{{ form.street_name.label_tag }}</label>
+                {{ form.street_name }}
+            </div>
+            <div>
+                <label>{{ form.house_number.label_tag }}</label>
+                {{ form.house_number }}
+            </div>
+            <div>
+                <label>{{ form.postal_code.label_tag }}</label>
+                {{ form.postal_code }}
+            </div>
+            <input type="submit" id="continue_btn" class="btn btn-primary" value="Continue" />
+            <a class="btn btn-default" href="{% url 'contact_phase' %}">Contact information</a>
+            <a class="btn btn-default" href="{% url 'payment_phase' %}">Payment information </a>
+            <a class="btn btn-default" href="{% url 'review_phase' %}">Review information</a>
+        </div>
+    </form>
+{% endblock %}
+
