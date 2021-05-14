@@ -1,19 +1,29 @@
 <nav class="navbar navbar-light">
     <div class="container-fluid">
-
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
+        <div class="topnav hamburger">
+            <a href="#home" class="active"></a>
+            <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+            <a href="javascript:void(0);" class="icon" onclick="getHamburger()">
+                <i class="fa fa-bars"></i>
+            </a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="myLinks">
+                <a class="nav-link" href="/">Home</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+            </div>
         </div>
-
-        <a class="nav-link navbar-link" href="/">Home</a>
-
+        <!--<div class="hamburger">
+            <a href="javascript:void(0);" class="icon" onclick="getHamburger()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div> -->
+        <a class="nav-link" href="/">Home</a>
         <div class="dropdown">
-            <input id="search" class="form-control me-2 search" type="search" autocomplete="off" placeholder="Search" aria-label="Search" onkeyup="search()" onmouseover="search()">
+            <input id="search" class="form-control me-2 search" type="search" autocomplete="off" placeholder="Search" aria-label="Search" onkeyup="search()" onmouseover="getProducts()">
             <div class="dropdown-content" id="search-result"></div>
         </div>
-        <div class="d-flex navbar-link">
-
-
+        <div class="d-flex">
             {% if user.is_authenticated %}
                 <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                 <a class="nav-link" href="{% url 'logout' %}">Log out</a>
@@ -21,7 +31,6 @@
                 <a class="nav-link" href="{% url 'register' %}">Sign up</a>
                 <a class="nav-link" href="{% url 'login' %}">Log in</a>
             {% endif %}
-
 
             <a class="nav-link cart-nav" href="{% url 'cart' %}">
                 <span class="circle" id="cart-len-display"></span>
