@@ -1,41 +1,34 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <form method="post">
         {% csrf_token %}
-        <div class="container">
-            <div>
-                <label>{{ form.first_name.label_tag }}</label>
-                {{ form.first_name }} {{ form.value }}
+        <div class="cop123-container">
+            <div class="cop123-container-left">
+                <h1 class="cop123-heading">Press enter your contact information</h1>
+                {{ form|crispy }}
+                <input type="submit" class="cop123-submit-btn" value="Submit" />
+                <div class="cop123-phase-traversal">
+                    <a class="btn btn-info" href="{% url 'contact_phase' %}">Contact information</a>
+                    <a class="btn btn-info" href="{% url 'payment_phase' %}">Payment information </a>
+                    <a class="btn btn-info" href="{% url 'review_phase' %}">Review information</a>
+                </div>
             </div>
-            <div>
-                <label>{{ form.last_name.label_tag }}</label>
-                {{ form.last_name }}
+            <div class="cop123-container-right">
+                <h1 class="cop123-heading">Cart information</h1>
+                {% for product in cart %}
+                    <div class="cop123-product">
+                        <div>
+                          <image class="cop123-product-image" src="{{ product.0.productimage_set.first.image.url }}"></image>
+                        </div>
+                        <div class="cop123-product-info">
+                            <p>Name: <span>{{ product.0.name }}</span></p>
+                            <p>Price: <span>{{ product.0.price }}</span>
+                            <p>quantity: <span>{{ product.1 }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-            <div>
-                <label>{{ form.country.label_tag }}</label>
-                {{ form.country }}
-                </select>
-            </div>
-            <div>
-                <label>{{ form.city.label_tag }}</label>
-                {{ form.city }}
-            </div>
-            <div>
-                <label>{{ form.street_name.label_tag }}</label>
-                {{ form.street_name }}
-            </div>
-            <div>
-                <label>{{ form.house_number.label_tag }}</label>
-                {{ form.house_number }}
-            </div>
-            <div>
-                <label>{{ form.postal_code.label_tag }}</label>
-                {{ form.postal_code }}
-            </div>
-            <input type="submit" id="continue_btn" class="btn btn-primary" value="Continue" />
-            <a class="btn btn-default" href="{% url 'contact_phase' %}">Contact information</a>
-            <a class="btn btn-default" href="{% url 'payment_phase' %}">Payment information </a>
-            <a class="btn btn-default" href="{% url 'review_phase' %}">Review information</a>
         </div>
     </form>
 {% endblock %}
