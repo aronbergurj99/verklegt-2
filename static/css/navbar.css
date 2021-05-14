@@ -4,7 +4,7 @@
 .hamburger a {
     text-decoration: none;
     color: white;
-    font-size: 22px;
+    font-size: 35px;
 }
 
 #myLinks {
@@ -16,17 +16,30 @@
     width: 100%;
     flex-direction: column;
     z-index: 12;
-    padding: 20px;
+    /*padding-left: 20px; */
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 #myLinks a {
     text-decoration: none;
     color: black;
-    font-size: 26px;
-    margin: 20px;
+    font-size: 20px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 25px;
+    /*margin: 15px; */
+    border-top: 1px solid darkgray;
 
 }
+
+.hamburger a:hover {
+    color: darkgrey;
+}
+
+#myLinks a:hover {
+    background-color: gray;
+}
+
 @media only screen and (max-width: 846px) {
     .hamburger {
         display: inline;
