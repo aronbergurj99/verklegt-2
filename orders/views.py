@@ -75,6 +75,7 @@ def review_phase(request):
             for key in list(request.session.keys()):
                 if not key.startswith("_") and not key == 'search-history':  # skip keys set by the django system
                     del request.session[key]
+            return redirect('confirmation_phase')
     cart = Cart(request)
     products = cart.get_items_in_cart()
 
