@@ -35,7 +35,7 @@ def profile(request):
 
     return render(request, 'account/account.html', context={
         'account': request.user,
-        'search_history': get_search_history(request),
+        'search_history': search_history,
         'orders': Orders.objects.filter(user=request.user),
         'profile_picture': profile_picture,
         'image_root': '/media/',
